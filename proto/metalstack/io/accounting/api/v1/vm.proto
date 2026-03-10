@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package metalstack.io.accounting.api.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "metalstack/io/accounting/api/v1/common.proto";
+
+option go_package = "pkg/apis/v1";
+
+service VMService {
+    rpc Added(VMReport) returns (Empty);
+    rpc Modified(VMReport) returns (Empty);
+    rpc Deleted(VMReport) returns (Empty);
+
+    rpc Usage(VMUsageRequest) returns (VMUsageResponse);
+}
+
+message VM {
+    string name = 1;
+    string uuid = 2;
+    string cpus = 3;
+    string memory = 4;
+    string image = 5;
+}
+
+message VMReport {
+    KubernetesResourceReport kubernetes_report = 1; // Kubernetes Bezeichnung irreführend und nicht sicher ob nötig; Kann in Report und start_date, end_date unterteilt werden da namespace nicht nötig?
+    VM vm = 2;
+    repeated string annotations = 3;
+}
+
+message VMUsageRequest {
+    UsageQuery query = 1;
+    repeated string annotations = 3;
+}
+
+message VMUsageResponse {
+    google.protobuf.Timestamp from = 1;
+    google.protobuf.Timestamp to = 2;
+    VMUsage usage = 3;
+    VMUsageAccumuluated accumulated_usage = 4;
+}
+
+message VMUsage {
+    string uuid = 1;
+    string name = 2;
+    // Ich lasse hier Platz damit weitere Infos hier eingetragen werden können mit Tag 3-9. z.b. CPUs, Memory und Image
+    google.protobuf.Timestamp vm_start = 10;
+    google.protobuf.Timestamp vm_end = 11;
+    google.protobuf.Duration lifetime = 12;
+    string cpu_seconds = 13;
+    string memory_seconds = 14;
+    repeated string warnings = 15;
+    repeated string annotations = 16;
+    string tenant_id = 17;
+    string tenant_name = 18;
+    string project_id = 19;
+    string project_name = 20;
+    string cluster_id = 21;
+    string cluster_name = 22;
+    string contractnumber = 23;
+    string debtorid = 24;
+}
+
+message VMUsageAccumuluated {
+    google.protobuf.Duration lifetime = 1;
+    string cpu_seconds = 2;
+    string memory_seconds = 3;
+}

@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package metalstack.io.accounting.api.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "metalstack/io/accounting/api/v1/common.proto";
+
+option go_package = "pkg/apis/v1";
+
+service VMVolumeService {
+  rpc Added(VMVolumeReport) returns (Empty);
+  rpc Modified(VMVolumeReport) returns (Empty);
+  rpc Deleted(VMVolumeReport) returns (Empty);
+
+  rpc Usage(VMVolumeUsageRequest) returns (VMVolumeUsageResponse);
+}
+
+message VMVolume {
+  string name = 1;
+  string uuid = 2;
+  string storage_type = 3;
+  string size = 4;
+}
+
+message VMVolumeReport {
+  KubernetesResourceReport kubernetes_report = 1;
+  VMVolume vm_volume = 2;
+  repeated string annotations = 3;
+}
+
+message VMVolumeUsageRequest {
+  UsageQuery query = 1;
+  optional string storage_type = 2;
+  repeated string annotations = 3;
+}
+
+message VMVolumeUsageResponse {
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  VMVolumeUsage usage = 3;
+  VMVolumeUsageAccumuluated accumulated_usage = 4;
+}
+
+message VMVolumeUsage {
+  string name = 1;
+  string uuid = 2;
+  // Ich lasse hier Platz damit weitere Infos hier eingetragen werden können mit Tag 3-9. z.b. storage_type und size
+  google.protobuf.Timestamp start = 10;
+  google.protobuf.Timestamp end = 11;
+  google.protobuf.Duration lifetime = 12;
+  string capacity_seconds = 13;
+  repeated string warnings = 14;
+  repeated string annotations = 15;
+  string tenant_id = 16;
+  string tenant_name = 17;
+  string project_id = 18;
+  string project_name = 19;
+  string cluster_id = 20;
+  string cluster_name = 21;
+  string contractnumber = 22;
+  string debtorid = 23;
+}
+
+message VMVolumeUsageAccumuluated {
+  google.protobuf.Duration lifetime = 1;
+  string capacity_seconds = 2;
+}
