@@ -45,22 +45,21 @@ message VMUsageResponse {
 message VMUsage {
     string uuid = 1;
     string name = 2;
-    // Ich lasse hier Platz damit weitere Infos hier eingetragen werden können mit Tag 3-9. z.b. CPUs, Memory und Image
-    google.protobuf.Timestamp vm_start = 10;
-    google.protobuf.Timestamp vm_end = 11;
-    google.protobuf.Duration lifetime = 12;
-    string cpu_seconds = 13;
-    string memory_seconds = 14;
-    repeated string warnings = 15;
-    repeated string annotations = 16;
-    string tenant_id = 17;
-    string tenant_name = 18;
-    string project_id = 19;
-    string project_name = 20;
-    string cluster_id = 21;
-    string cluster_name = 22;
-    string contractnumber = 23;
-    string debtorid = 24;
+    google.protobuf.Timestamp vm_start = 3;
+    google.protobuf.Timestamp vm_end = 4;
+    google.protobuf.Duration lifetime = 5;
+    string cpu_seconds = 6;
+    string memory_seconds = 7;
+    repeated string warnings = 8;
+    repeated string annotations = 9;
+    string tenant_id = 10;
+    string tenant_name = 11;
+    string project_id = 12;
+    string project_name = 13;
+    string cluster_id = 14;
+    string cluster_name = 15;
+    string contractnumber = 16;
+    string debtorid = 17;
 }
 
 message VMUsageAccumuluated {

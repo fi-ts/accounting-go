@@ -45,21 +45,20 @@ message VMVolumeUsageResponse {
 message VMVolumeUsage {
   string name = 1;
   string uuid = 2;
-  // Ich lasse hier Platz damit weitere Infos hier eingetragen werden können mit Tag 3-9. z.b. storage_type und size
-  google.protobuf.Timestamp start = 10;
-  google.protobuf.Timestamp end = 11;
-  google.protobuf.Duration lifetime = 12;
-  string capacity_seconds = 13;
-  repeated string warnings = 14;
-  repeated string annotations = 15;
-  string tenant_id = 16;
-  string tenant_name = 17;
-  string project_id = 18;
-  string project_name = 19;
-  string cluster_id = 20;
-  string cluster_name = 21;
-  string contractnumber = 22;
-  string debtorid = 23;
+  google.protobuf.Timestamp start = 3;
+  google.protobuf.Timestamp end = 4;
+  google.protobuf.Duration lifetime = 5;
+  string capacity_seconds = 6;
+  repeated string warnings = 7;
+  repeated string annotations = 8;
+  string tenant_id = 9;
+  string tenant_name = 10;
+  string project_id = 11;
+  string project_name = 12;
+  string cluster_id = 13;
+  string cluster_name = 14;
+  string contractnumber = 15;
+  string debtorid = 16;
 }
 
 message VMVolumeUsageAccumuluated {
