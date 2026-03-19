@@ -9,61 +9,69 @@ import "metalstack/io/accounting/api/v1/common.proto";
 option go_package = "pkg/apis/v1";
 
 service VMService {
-    rpc Added(VMReport) returns (Empty);
-    rpc Modified(VMReport) returns (Empty);
-    rpc Deleted(VMReport) returns (Empty);
+  rpc Added(VMReport) returns (Empty);
+  rpc Modified(VMReport) returns (Empty);
+  rpc Deleted(VMReport) returns (Empty);
 
-    rpc Usage(VMUsageRequest) returns (VMUsageResponse);
+  rpc Usage(VMUsageRequest) returns (VMUsageResponse);
 }
 
 message VM {
-    string name = 1;
-    string uuid = 2;
-    string cpus = 3;
-    string memory = 4;
-    string image = 5;
+  string uuid = 1;
+  string hostname = 2;
+  string fqdname = 3;
+  string cpus = 4;
+  string memory = 5;
+  string image = 6;
 }
 
 message VMReport {
-    KubernetesResourceReport kubernetes_report = 1; // Kubernetes Bezeichnung irreführend und nicht sicher ob nötig; Kann in Report und start_date, end_date unterteilt werden da namespace nicht nötig?
-    VM vm = 2;
-    repeated string annotations = 3;
+  string tenant = 1;
+  string projectid = 2;
+  string requestid = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  google.protobuf.Timestamp start_date = 5;
+  google.protobuf.Timestamp end_date = 6;
+  VM vm = 7;
+  repeated string annotations = 8;
 }
 
 message VMUsageRequest {
-    UsageQuery query = 1;
-    repeated string annotations = 3;
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  optional string tenant = 3;
+  optional string projectid = 4;
+  repeated string annotations = 5;
 }
 
 message VMUsageResponse {
-    google.protobuf.Timestamp from = 1;
-    google.protobuf.Timestamp to = 2;
-    VMUsage usage = 3;
-    VMUsageAccumuluated accumulated_usage = 4;
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  VMUsage usage = 3;
+  VMUsageAccumuluated accumulated_usage = 4;
 }
 
 message VMUsage {
-    string uuid = 1;
-    string name = 2;
-    google.protobuf.Timestamp vm_start = 3;
-    google.protobuf.Timestamp vm_end = 4;
-    google.protobuf.Duration lifetime = 5;
-    string cpu_seconds = 6;
-    string memory_seconds = 7;
-    repeated string warnings = 8;
-    repeated string annotations = 9;
-    string tenant_id = 10;
-    string tenant_name = 11;
-    string project_id = 12;
-    string project_name = 13;
-    string cluster_id = 14;
-    string cluster_name = 15;
-    string contractnumber = 16;
-    string debtorid = 17;
+  string uuid = 1;
+  string hostname = 2;
+  string fqdname = 3;
+  google.protobuf.Timestamp vm_start = 4;
+  google.protobuf.Timestamp vm_end = 5;
+  google.protobuf.Duration lifetime = 6;
+  string cpu_seconds = 7;
+  string memory_seconds = 8;
+  repeated string warnings = 9;
+  repeated string annotations = 10;
+  string tenant_id = 11;
+  string tenant_name = 12;
+  string project_id = 13;
+  string project_name = 14;
+  string contractnumber = 15;
+  string debtorid = 16;
 }
 
 message VMUsageAccumuluated {
-    google.protobuf.Duration lifetime = 1;
-    string cpu_seconds = 2;
-    string memory_seconds = 3;
+  google.protobuf.Duration lifetime = 1;
+  string cpu_seconds = 2;
+  string memory_seconds = 3;
 }
