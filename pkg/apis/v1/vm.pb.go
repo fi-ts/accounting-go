@@ -287,7 +287,7 @@ type VMUsageResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	From             *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
 	To               *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
-	Usage            *VMUsage               `protobuf:"bytes,3,opt,name=usage,proto3" json:"usage,omitempty"`
+	Usage            []*VMUsage             `protobuf:"bytes,3,rep,name=usage,proto3" json:"usage,omitempty"`
 	AccumulatedUsage *VMUsageAccumuluated   `protobuf:"bytes,4,opt,name=accumulated_usage,json=accumulatedUsage,proto3" json:"accumulated_usage,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -337,7 +337,7 @@ func (x *VMUsageResponse) GetTo() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *VMUsageResponse) GetUsage() *VMUsage {
+func (x *VMUsageResponse) GetUsage() []*VMUsage {
 	if x != nil {
 		return x.Usage
 	}
@@ -365,7 +365,8 @@ type VMUsage struct {
 	Annotations   []string               `protobuf:"bytes,10,rep,name=annotations,proto3" json:"annotations,omitempty"`
 	Tenant        string                 `protobuf:"bytes,11,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	ProjectId     string                 `protobuf:"bytes,12,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	RequestId     string                 `protobuf:"bytes,13,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,13,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	RequestId     string                 `protobuf:"bytes,14,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -484,6 +485,13 @@ func (x *VMUsage) GetProjectId() string {
 	return ""
 }
 
+func (x *VMUsage) GetProjectName() string {
+	if x != nil {
+		return x.ProjectName
+	}
+	return ""
+}
+
 func (x *VMUsage) GetRequestId() string {
 	if x != nil {
 		return x.RequestId
@@ -585,8 +593,8 @@ const file_metalstack_io_accounting_api_v1_vm_proto_rawDesc = "" +
 	"\x0fVMUsageResponse\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12>\n" +
-	"\x05usage\x18\x03 \x01(\v2(.metalstack.io.accounting.api.v1.VMUsageR\x05usage\x12a\n" +
-	"\x11accumulated_usage\x18\x04 \x01(\v24.metalstack.io.accounting.api.v1.VMUsageAccumuluatedR\x10accumulatedUsage\"\xd0\x03\n" +
+	"\x05usage\x18\x03 \x03(\v2(.metalstack.io.accounting.api.v1.VMUsageR\x05usage\x12a\n" +
+	"\x11accumulated_usage\x18\x04 \x01(\v24.metalstack.io.accounting.api.v1.VMUsageAccumuluatedR\x10accumulatedUsage\"\xf3\x03\n" +
 	"\aVMUsage\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\bhostname\x18\x02 \x01(\tR\bhostname\x12\x18\n" +
@@ -602,9 +610,10 @@ const file_metalstack_io_accounting_api_v1_vm_proto_rawDesc = "" +
 	" \x03(\tR\vannotations\x12\x16\n" +
 	"\x06tenant\x18\v \x01(\tR\x06tenant\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\f \x01(\tR\tprojectId\x12\x1d\n" +
+	"project_id\x18\f \x01(\tR\tprojectId\x12!\n" +
+	"\fproject_name\x18\r \x01(\tR\vprojectName\x12\x1d\n" +
 	"\n" +
-	"request_id\x18\r \x01(\tR\trequestId\"\x94\x01\n" +
+	"request_id\x18\x0e \x01(\tR\trequestId\"\x94\x01\n" +
 	"\x13VMUsageAccumuluated\x125\n" +
 	"\blifetime\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\blifetime\x12\x1f\n" +
 	"\vcpu_seconds\x18\x02 \x01(\tR\n" +

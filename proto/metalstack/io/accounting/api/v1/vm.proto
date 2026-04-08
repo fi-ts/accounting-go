@@ -47,7 +47,7 @@ message VMUsageRequest {
 message VMUsageResponse {
   google.protobuf.Timestamp from = 1;
   google.protobuf.Timestamp to = 2;
-  VMUsage usage = 3;
+  repeated VMUsage usage = 3;
   VMUsageAccumuluated accumulated_usage = 4;
 }
 
@@ -64,7 +64,8 @@ message VMUsage {
   repeated string annotations = 10;
   string tenant = 11;
   string project_id = 12;
-  string request_id = 13;
+  string project_name = 13;
+  string request_id = 14;
 }
 
 message VMUsageAccumuluated {
