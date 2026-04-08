@@ -62,12 +62,9 @@ message VMUsage {
   string memory_seconds = 8;
   repeated string warnings = 9;
   repeated string annotations = 10;
-  string tenant_id = 11;
-  string tenant_name = 12;
-  string project_id = 13;
-  string project_name = 14;
-  string contractnumber = 15;
-  string debtorid = 16;
+  string tenant = 11;
+  string project_id = 12;
+  string request_id = 13;
 }
 
 message VMUsageAccumuluated {
