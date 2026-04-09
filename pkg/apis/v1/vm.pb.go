@@ -31,6 +31,7 @@ type VM struct {
 	Cpus          string                 `protobuf:"bytes,4,opt,name=cpus,proto3" json:"cpus,omitempty"`
 	Memory        string                 `protobuf:"bytes,5,opt,name=memory,proto3" json:"memory,omitempty"`
 	Image         string                 `protobuf:"bytes,6,opt,name=image,proto3" json:"image,omitempty"`
+	Volumes       []*VMVolume            `protobuf:"bytes,7,rep,name=volumes,proto3" json:"volumes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -107,6 +108,81 @@ func (x *VM) GetImage() string {
 	return ""
 }
 
+func (x *VM) GetVolumes() []*VMVolume {
+	if x != nil {
+		return x.Volumes
+	}
+	return nil
+}
+
+type VMVolume struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	StorageType   string                 `protobuf:"bytes,3,opt,name=storage_type,json=storageType,proto3" json:"storage_type,omitempty"`
+	Size          string                 `protobuf:"bytes,4,opt,name=size,proto3" json:"size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VMVolume) Reset() {
+	*x = VMVolume{}
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VMVolume) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VMVolume) ProtoMessage() {}
+
+func (x *VMVolume) ProtoReflect() protoreflect.Message {
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VMVolume.ProtoReflect.Descriptor instead.
+func (*VMVolume) Descriptor() ([]byte, []int) {
+	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *VMVolume) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *VMVolume) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *VMVolume) GetStorageType() string {
+	if x != nil {
+		return x.StorageType
+	}
+	return ""
+}
+
+func (x *VMVolume) GetSize() string {
+	if x != nil {
+		return x.Size
+	}
+	return ""
+}
+
 type VMReport struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Tenant        string                 `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
@@ -123,7 +199,7 @@ type VMReport struct {
 
 func (x *VMReport) Reset() {
 	*x = VMReport{}
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[1]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -135,7 +211,7 @@ func (x *VMReport) String() string {
 func (*VMReport) ProtoMessage() {}
 
 func (x *VMReport) ProtoReflect() protoreflect.Message {
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[1]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -148,7 +224,7 @@ func (x *VMReport) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMReport.ProtoReflect.Descriptor instead.
 func (*VMReport) Descriptor() ([]byte, []int) {
-	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{1}
+	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *VMReport) GetTenant() string {
@@ -220,7 +296,7 @@ type VMUsageRequest struct {
 
 func (x *VMUsageRequest) Reset() {
 	*x = VMUsageRequest{}
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[2]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -232,7 +308,7 @@ func (x *VMUsageRequest) String() string {
 func (*VMUsageRequest) ProtoMessage() {}
 
 func (x *VMUsageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[2]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +321,7 @@ func (x *VMUsageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMUsageRequest.ProtoReflect.Descriptor instead.
 func (*VMUsageRequest) Descriptor() ([]byte, []int) {
-	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{2}
+	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *VMUsageRequest) GetFrom() *timestamppb.Timestamp {
@@ -295,7 +371,7 @@ type VMUsageResponse struct {
 
 func (x *VMUsageResponse) Reset() {
 	*x = VMUsageResponse{}
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[3]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -307,7 +383,7 @@ func (x *VMUsageResponse) String() string {
 func (*VMUsageResponse) ProtoMessage() {}
 
 func (x *VMUsageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[3]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -320,7 +396,7 @@ func (x *VMUsageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMUsageResponse.ProtoReflect.Descriptor instead.
 func (*VMUsageResponse) Descriptor() ([]byte, []int) {
-	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{3}
+	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *VMUsageResponse) GetFrom() *timestamppb.Timestamp {
@@ -367,13 +443,14 @@ type VMUsage struct {
 	ProjectId     string                 `protobuf:"bytes,12,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	ProjectName   string                 `protobuf:"bytes,13,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
 	RequestId     string                 `protobuf:"bytes,14,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Volumes       []*VMVolume            `protobuf:"bytes,15,rep,name=volumes,proto3" json:"volumes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VMUsage) Reset() {
 	*x = VMUsage{}
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[4]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -385,7 +462,7 @@ func (x *VMUsage) String() string {
 func (*VMUsage) ProtoMessage() {}
 
 func (x *VMUsage) ProtoReflect() protoreflect.Message {
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[4]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -398,7 +475,7 @@ func (x *VMUsage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMUsage.ProtoReflect.Descriptor instead.
 func (*VMUsage) Descriptor() ([]byte, []int) {
-	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{4}
+	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *VMUsage) GetUuid() string {
@@ -499,6 +576,13 @@ func (x *VMUsage) GetRequestId() string {
 	return ""
 }
 
+func (x *VMUsage) GetVolumes() []*VMVolume {
+	if x != nil {
+		return x.Volumes
+	}
+	return nil
+}
+
 type VMUsageAccumuluated struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Lifetime      *durationpb.Duration   `protobuf:"bytes,1,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
@@ -510,7 +594,7 @@ type VMUsageAccumuluated struct {
 
 func (x *VMUsageAccumuluated) Reset() {
 	*x = VMUsageAccumuluated{}
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[5]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -522,7 +606,7 @@ func (x *VMUsageAccumuluated) String() string {
 func (*VMUsageAccumuluated) ProtoMessage() {}
 
 func (x *VMUsageAccumuluated) ProtoReflect() protoreflect.Message {
-	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[5]
+	mi := &file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,7 +619,7 @@ func (x *VMUsageAccumuluated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMUsageAccumuluated.ProtoReflect.Descriptor instead.
 func (*VMUsageAccumuluated) Descriptor() ([]byte, []int) {
-	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{5}
+	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *VMUsageAccumuluated) GetLifetime() *durationpb.Duration {
@@ -563,14 +647,20 @@ var File_metalstack_io_accounting_api_v1_vm_proto protoreflect.FileDescriptor
 
 const file_metalstack_io_accounting_api_v1_vm_proto_rawDesc = "" +
 	"\n" +
-	"(metalstack/io/accounting/api/v1/vm.proto\x12\x1fmetalstack.io.accounting.api.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\x90\x01\n" +
+	"(metalstack/io/accounting/api/v1/vm.proto\x12\x1fmetalstack.io.accounting.api.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\xd5\x01\n" +
 	"\x02VM\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\bhostname\x18\x02 \x01(\tR\bhostname\x12\x18\n" +
 	"\afqdname\x18\x03 \x01(\tR\afqdname\x12\x12\n" +
 	"\x04cpus\x18\x04 \x01(\tR\x04cpus\x12\x16\n" +
 	"\x06memory\x18\x05 \x01(\tR\x06memory\x12\x14\n" +
-	"\x05image\x18\x06 \x01(\tR\x05image\"\xe1\x02\n" +
+	"\x05image\x18\x06 \x01(\tR\x05image\x12C\n" +
+	"\avolumes\x18\a \x03(\v2).metalstack.io.accounting.api.v1.VMVolumeR\avolumes\"i\n" +
+	"\bVMVolume\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12!\n" +
+	"\fstorage_type\x18\x03 \x01(\tR\vstorageType\x12\x12\n" +
+	"\x04size\x18\x04 \x01(\tR\x04size\"\xe1\x02\n" +
 	"\bVMReport\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1c\n" +
 	"\tprojectid\x18\x02 \x01(\tR\tprojectid\x12\x1c\n" +
@@ -594,7 +684,7 @@ const file_metalstack_io_accounting_api_v1_vm_proto_rawDesc = "" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12>\n" +
 	"\x05usage\x18\x03 \x03(\v2(.metalstack.io.accounting.api.v1.VMUsageR\x05usage\x12a\n" +
-	"\x11accumulated_usage\x18\x04 \x01(\v24.metalstack.io.accounting.api.v1.VMUsageAccumuluatedR\x10accumulatedUsage\"\xf3\x03\n" +
+	"\x11accumulated_usage\x18\x04 \x01(\v24.metalstack.io.accounting.api.v1.VMUsageAccumuluatedR\x10accumulatedUsage\"\xb8\x04\n" +
 	"\aVMUsage\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\bhostname\x18\x02 \x01(\tR\bhostname\x12\x18\n" +
@@ -613,7 +703,8 @@ const file_metalstack_io_accounting_api_v1_vm_proto_rawDesc = "" +
 	"project_id\x18\f \x01(\tR\tprojectId\x12!\n" +
 	"\fproject_name\x18\r \x01(\tR\vprojectName\x12\x1d\n" +
 	"\n" +
-	"request_id\x18\x0e \x01(\tR\trequestId\"\x94\x01\n" +
+	"request_id\x18\x0e \x01(\tR\trequestId\x12C\n" +
+	"\avolumes\x18\x0f \x03(\v2).metalstack.io.accounting.api.v1.VMVolumeR\avolumes\"\x94\x01\n" +
 	"\x13VMUsageAccumuluated\x125\n" +
 	"\blifetime\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\blifetime\x12\x1f\n" +
 	"\vcpu_seconds\x18\x02 \x01(\tR\n" +
@@ -637,46 +728,49 @@ func file_metalstack_io_accounting_api_v1_vm_proto_rawDescGZIP() []byte {
 	return file_metalstack_io_accounting_api_v1_vm_proto_rawDescData
 }
 
-var file_metalstack_io_accounting_api_v1_vm_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_metalstack_io_accounting_api_v1_vm_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_metalstack_io_accounting_api_v1_vm_proto_goTypes = []any{
 	(*VM)(nil),                    // 0: metalstack.io.accounting.api.v1.VM
-	(*VMReport)(nil),              // 1: metalstack.io.accounting.api.v1.VMReport
-	(*VMUsageRequest)(nil),        // 2: metalstack.io.accounting.api.v1.VMUsageRequest
-	(*VMUsageResponse)(nil),       // 3: metalstack.io.accounting.api.v1.VMUsageResponse
-	(*VMUsage)(nil),               // 4: metalstack.io.accounting.api.v1.VMUsage
-	(*VMUsageAccumuluated)(nil),   // 5: metalstack.io.accounting.api.v1.VMUsageAccumuluated
-	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),   // 7: google.protobuf.Duration
-	(*Empty)(nil),                 // 8: metalstack.io.accounting.api.v1.Empty
+	(*VMVolume)(nil),              // 1: metalstack.io.accounting.api.v1.VMVolume
+	(*VMReport)(nil),              // 2: metalstack.io.accounting.api.v1.VMReport
+	(*VMUsageRequest)(nil),        // 3: metalstack.io.accounting.api.v1.VMUsageRequest
+	(*VMUsageResponse)(nil),       // 4: metalstack.io.accounting.api.v1.VMUsageResponse
+	(*VMUsage)(nil),               // 5: metalstack.io.accounting.api.v1.VMUsage
+	(*VMUsageAccumuluated)(nil),   // 6: metalstack.io.accounting.api.v1.VMUsageAccumuluated
+	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),   // 8: google.protobuf.Duration
+	(*Empty)(nil),                 // 9: metalstack.io.accounting.api.v1.Empty
 }
 var file_metalstack_io_accounting_api_v1_vm_proto_depIdxs = []int32{
-	6,  // 0: metalstack.io.accounting.api.v1.VMReport.timestamp:type_name -> google.protobuf.Timestamp
-	6,  // 1: metalstack.io.accounting.api.v1.VMReport.start_date:type_name -> google.protobuf.Timestamp
-	6,  // 2: metalstack.io.accounting.api.v1.VMReport.end_date:type_name -> google.protobuf.Timestamp
-	0,  // 3: metalstack.io.accounting.api.v1.VMReport.vm:type_name -> metalstack.io.accounting.api.v1.VM
-	6,  // 4: metalstack.io.accounting.api.v1.VMUsageRequest.from:type_name -> google.protobuf.Timestamp
-	6,  // 5: metalstack.io.accounting.api.v1.VMUsageRequest.to:type_name -> google.protobuf.Timestamp
-	6,  // 6: metalstack.io.accounting.api.v1.VMUsageResponse.from:type_name -> google.protobuf.Timestamp
-	6,  // 7: metalstack.io.accounting.api.v1.VMUsageResponse.to:type_name -> google.protobuf.Timestamp
-	4,  // 8: metalstack.io.accounting.api.v1.VMUsageResponse.usage:type_name -> metalstack.io.accounting.api.v1.VMUsage
-	5,  // 9: metalstack.io.accounting.api.v1.VMUsageResponse.accumulated_usage:type_name -> metalstack.io.accounting.api.v1.VMUsageAccumuluated
-	6,  // 10: metalstack.io.accounting.api.v1.VMUsage.vm_start:type_name -> google.protobuf.Timestamp
-	6,  // 11: metalstack.io.accounting.api.v1.VMUsage.vm_end:type_name -> google.protobuf.Timestamp
-	7,  // 12: metalstack.io.accounting.api.v1.VMUsage.lifetime:type_name -> google.protobuf.Duration
-	7,  // 13: metalstack.io.accounting.api.v1.VMUsageAccumuluated.lifetime:type_name -> google.protobuf.Duration
-	1,  // 14: metalstack.io.accounting.api.v1.VMService.Added:input_type -> metalstack.io.accounting.api.v1.VMReport
-	1,  // 15: metalstack.io.accounting.api.v1.VMService.Modified:input_type -> metalstack.io.accounting.api.v1.VMReport
-	1,  // 16: metalstack.io.accounting.api.v1.VMService.Deleted:input_type -> metalstack.io.accounting.api.v1.VMReport
-	2,  // 17: metalstack.io.accounting.api.v1.VMService.Usage:input_type -> metalstack.io.accounting.api.v1.VMUsageRequest
-	8,  // 18: metalstack.io.accounting.api.v1.VMService.Added:output_type -> metalstack.io.accounting.api.v1.Empty
-	8,  // 19: metalstack.io.accounting.api.v1.VMService.Modified:output_type -> metalstack.io.accounting.api.v1.Empty
-	8,  // 20: metalstack.io.accounting.api.v1.VMService.Deleted:output_type -> metalstack.io.accounting.api.v1.Empty
-	3,  // 21: metalstack.io.accounting.api.v1.VMService.Usage:output_type -> metalstack.io.accounting.api.v1.VMUsageResponse
-	18, // [18:22] is the sub-list for method output_type
-	14, // [14:18] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	1,  // 0: metalstack.io.accounting.api.v1.VM.volumes:type_name -> metalstack.io.accounting.api.v1.VMVolume
+	7,  // 1: metalstack.io.accounting.api.v1.VMReport.timestamp:type_name -> google.protobuf.Timestamp
+	7,  // 2: metalstack.io.accounting.api.v1.VMReport.start_date:type_name -> google.protobuf.Timestamp
+	7,  // 3: metalstack.io.accounting.api.v1.VMReport.end_date:type_name -> google.protobuf.Timestamp
+	0,  // 4: metalstack.io.accounting.api.v1.VMReport.vm:type_name -> metalstack.io.accounting.api.v1.VM
+	7,  // 5: metalstack.io.accounting.api.v1.VMUsageRequest.from:type_name -> google.protobuf.Timestamp
+	7,  // 6: metalstack.io.accounting.api.v1.VMUsageRequest.to:type_name -> google.protobuf.Timestamp
+	7,  // 7: metalstack.io.accounting.api.v1.VMUsageResponse.from:type_name -> google.protobuf.Timestamp
+	7,  // 8: metalstack.io.accounting.api.v1.VMUsageResponse.to:type_name -> google.protobuf.Timestamp
+	5,  // 9: metalstack.io.accounting.api.v1.VMUsageResponse.usage:type_name -> metalstack.io.accounting.api.v1.VMUsage
+	6,  // 10: metalstack.io.accounting.api.v1.VMUsageResponse.accumulated_usage:type_name -> metalstack.io.accounting.api.v1.VMUsageAccumuluated
+	7,  // 11: metalstack.io.accounting.api.v1.VMUsage.vm_start:type_name -> google.protobuf.Timestamp
+	7,  // 12: metalstack.io.accounting.api.v1.VMUsage.vm_end:type_name -> google.protobuf.Timestamp
+	8,  // 13: metalstack.io.accounting.api.v1.VMUsage.lifetime:type_name -> google.protobuf.Duration
+	1,  // 14: metalstack.io.accounting.api.v1.VMUsage.volumes:type_name -> metalstack.io.accounting.api.v1.VMVolume
+	8,  // 15: metalstack.io.accounting.api.v1.VMUsageAccumuluated.lifetime:type_name -> google.protobuf.Duration
+	2,  // 16: metalstack.io.accounting.api.v1.VMService.Added:input_type -> metalstack.io.accounting.api.v1.VMReport
+	2,  // 17: metalstack.io.accounting.api.v1.VMService.Modified:input_type -> metalstack.io.accounting.api.v1.VMReport
+	2,  // 18: metalstack.io.accounting.api.v1.VMService.Deleted:input_type -> metalstack.io.accounting.api.v1.VMReport
+	3,  // 19: metalstack.io.accounting.api.v1.VMService.Usage:input_type -> metalstack.io.accounting.api.v1.VMUsageRequest
+	9,  // 20: metalstack.io.accounting.api.v1.VMService.Added:output_type -> metalstack.io.accounting.api.v1.Empty
+	9,  // 21: metalstack.io.accounting.api.v1.VMService.Modified:output_type -> metalstack.io.accounting.api.v1.Empty
+	9,  // 22: metalstack.io.accounting.api.v1.VMService.Deleted:output_type -> metalstack.io.accounting.api.v1.Empty
+	4,  // 23: metalstack.io.accounting.api.v1.VMService.Usage:output_type -> metalstack.io.accounting.api.v1.VMUsageResponse
+	20, // [20:24] is the sub-list for method output_type
+	16, // [16:20] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_metalstack_io_accounting_api_v1_vm_proto_init() }
@@ -685,14 +779,14 @@ func file_metalstack_io_accounting_api_v1_vm_proto_init() {
 		return
 	}
 	file_metalstack_io_accounting_api_v1_common_proto_init()
-	file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[2].OneofWrappers = []any{}
+	file_metalstack_io_accounting_api_v1_vm_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_metalstack_io_accounting_api_v1_vm_proto_rawDesc), len(file_metalstack_io_accounting_api_v1_vm_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
