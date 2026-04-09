@@ -23,6 +23,14 @@ message VM {
   string cpus = 4;
   string memory = 5;
   string image = 6;
+  repeated VMVolume volumes = 7;
+}
+
+message VMVolume {
+  string name = 1;
+  string uuid = 2;
+  string storage_type = 3;
+  string size = 4;
 }
 
 message VMReport {
@@ -66,6 +74,7 @@ message VMUsage {
   string project_id = 12;
   string project_name = 13;
   string request_id = 14;
+  repeated VMVolume volumes = 15;
 }
 
 message VMUsageAccumuluated {
