@@ -91,7 +91,7 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		if mockFns.MachineReservation != nil {
 			mockFns.MachineReservation(&a.MachineReservationService.Mock)
 		}
-		if mockFns.MachineReservation != nil {
+		if mockFns.VM != nil {
 			mockFns.VM(&a.VMService.Mock)
 		}
 	}
