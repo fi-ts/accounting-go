@@ -23,6 +23,7 @@ type AccountingMockFns struct {
 	ProductOption      func(mock *mock.Mock)
 	Machine            func(mock *mock.Mock)
 	MachineReservation func(mock *mock.Mock)
+	VM                 func(mock *mock.Mock)
 }
 
 type AccountingMockClient struct {
@@ -37,6 +38,7 @@ type AccountingMockClient struct {
 	ProductOptionService      *accmocks.ProductOptionServiceClient
 	MachineService            *accmocks.MachineServiceClient
 	MachineReservationService *accmocks.MachineReservationServiceClient
+	VMService                 *accmocks.VMServiceClient
 }
 
 func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient, accountingclient.AccountingClient) {
@@ -52,6 +54,7 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		ProductOptionService:      &accmocks.ProductOptionServiceClient{},
 		MachineService:            &accmocks.MachineServiceClient{},
 		MachineReservationService: &accmocks.MachineReservationServiceClient{},
+		VMService:                 &accmocks.VMServiceClient{},
 	}
 
 	if mockFns != nil {
@@ -87,6 +90,9 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		}
 		if mockFns.MachineReservation != nil {
 			mockFns.MachineReservation(&a.MachineReservationService.Mock)
+		}
+		if mockFns.MachineReservation != nil {
+			mockFns.VM(&a.VMService.Mock)
 		}
 	}
 
@@ -145,6 +151,10 @@ func (c *AccountingMockClient) MachineReservation() v1.MachineReservationService
 	return c.MachineReservationService
 }
 
+func (c *AccountingMockClient) VM() v1.VMServiceClient {
+	return c.VMService
+}
+
 func (c *AccountingMockClient) AssertExpectations(t *testing.T) {
 	_ = c.ClusterService.AssertExpectations(t)
 	_ = c.PodService.AssertExpectations(t)
@@ -157,4 +167,5 @@ func (c *AccountingMockClient) AssertExpectations(t *testing.T) {
 	_ = c.ProductOptionService.AssertExpectations(t)
 	_ = c.MachineService.AssertExpectations(t)
 	_ = c.MachineReservationService.AssertExpectations(t)
+	_ = c.VMService.AssertExpectations(t)
 }

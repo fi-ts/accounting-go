@@ -27,6 +27,7 @@ type AccountingClient interface {
 	Machine() v1.MachineServiceClient
 	MachineReservation() v1.MachineReservationServiceClient
 	ProductOption() v1.ProductOptionServiceClient
+	VM() v1.VMServiceClient
 	Close() error
 }
 
@@ -141,4 +142,8 @@ func (c client) MachineReservation() v1.MachineReservationServiceClient {
 
 func (c client) ProductOption() v1.ProductOptionServiceClient {
 	return v1.NewProductOptionServiceClient(c.conn)
+}
+
+func (c client) VM() v1.VMServiceClient {
+	return v1.NewVMServiceClient(c.conn)
 }

@@ -120,7 +120,7 @@ type VMVolume struct {
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	StorageType   string                 `protobuf:"bytes,3,opt,name=storage_type,json=storageType,proto3" json:"storage_type,omitempty"`
-	Size          string                 `protobuf:"bytes,4,opt,name=size,proto3" json:"size,omitempty"`
+	Size          uint64                 `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -176,11 +176,11 @@ func (x *VMVolume) GetStorageType() string {
 	return ""
 }
 
-func (x *VMVolume) GetSize() string {
+func (x *VMVolume) GetSize() uint64 {
 	if x != nil {
 		return x.Size
 	}
-	return ""
+	return 0
 }
 
 type VMReport struct {
@@ -660,7 +660,7 @@ const file_metalstack_io_accounting_api_v1_vm_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12!\n" +
 	"\fstorage_type\x18\x03 \x01(\tR\vstorageType\x12\x12\n" +
-	"\x04size\x18\x04 \x01(\tR\x04size\"\xe1\x02\n" +
+	"\x04size\x18\x04 \x01(\x04R\x04size\"\xe1\x02\n" +
 	"\bVMReport\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1c\n" +
 	"\tprojectid\x18\x02 \x01(\tR\tprojectid\x12\x1c\n" +
