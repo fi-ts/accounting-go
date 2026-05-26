@@ -30,7 +30,7 @@ message VMVolume {
   string name = 1;
   string uuid = 2;
   string storage_type = 3;
-  string size = 4;
+  uint64 size = 4;
 }
 
 message VMReport {
