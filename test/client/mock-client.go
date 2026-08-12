@@ -5,7 +5,7 @@ import (
 
 	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
 	accountingclient "github.com/fi-ts/accounting-go/pkg/client"
-	accmocks "github.com/fi-ts/accounting-go/test/mocks/v1"
+	accmocks "github.com/fi-ts/accounting-go/test/mocks/pkg/apis/v1"
 	"github.com/stretchr/testify/mock"
 
 	healthv1 "google.golang.org/grpc/health/grpc_health_v1"
