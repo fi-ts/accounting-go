@@ -2,7 +2,7 @@
 all: true
 recursive: true
 include-auto-generated: true
-dir: 'test/mocks/{{.InterfaceDirRelative | trimPrefix "go/"}}'
+dir: 'test/mocks/v1'
 filename: "{{.InterfaceName}}.go"
 pkgname: '{{.SrcPackageName}}'
 structname: '{{.InterfaceName}}'
