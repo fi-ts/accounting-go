@@ -1,0 +1,23 @@
+{{ range .Header }}{{ . }}
+{{ end -}}
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.36.12
+    out: ../
+    opt:
+      # This is needed because without it the generated import statements are wrong
+      {{- range .ImportPaths }}
+      {{ . }}
+      {{- end }}
+      # This is needed because without it the generated folder structure is wrong
+      - module={{ .ModulePrefix }}
+  - remote: buf.build/grpc/go:v1.6.2
+    out: ../
+    opt:
+      - require_unimplemented_servers=false
+      # This is needed because without it the generated import statements are wrong
+      {{- range .ImportPaths }}
+      {{ . }}
+      {{- end }}
+      # This is needed because without it the generated folder structure is wrong
+      - module={{ .ModulePrefix }}

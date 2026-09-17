@@ -8,6 +8,7 @@ import (
 	"time"
 
 	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
+	vmv1 "github.com/fi-ts/accounting-go/pkg/apis/vm/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	healthv1 "google.golang.org/grpc/health/grpc_health_v1"
@@ -27,7 +28,7 @@ type AccountingClient interface {
 	Machine() v1.MachineServiceClient
 	MachineReservation() v1.MachineReservationServiceClient
 	ProductOption() v1.ProductOptionServiceClient
-	VM() v1.VMServiceClient
+	ManagedVM() vmv1.ManagedVMServiceClient
 	Close() error
 }
 
@@ -144,6 +145,6 @@ func (c client) ProductOption() v1.ProductOptionServiceClient {
 	return v1.NewProductOptionServiceClient(c.conn)
 }
 
-func (c client) VM() v1.VMServiceClient {
-	return v1.NewVMServiceClient(c.conn)
+func (c client) ManagedVM() vmv1.ManagedVMServiceClient {
+	return vmv1.NewManagedVMServiceClient(c.conn)
 }

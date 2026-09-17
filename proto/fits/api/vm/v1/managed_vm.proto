@@ -1,50 +1,50 @@
 syntax = "proto3";
 
-package metalstack.io.accounting.api.v1;
+package fits.api.vm.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "metalstack/io/accounting/api/v1/common.proto";
 
-option go_package = "pkg/apis/v1";
+option go_package = "pkg/apis/vm/v1";
 
-service VMService {
-  rpc Added(VMReport) returns (Empty);
-  rpc Modified(VMReport) returns (Empty);
-  rpc Deleted(VMReport) returns (Empty);
+service ManagedVMService {
+  rpc Added(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
+  rpc Modified(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
+  rpc Deleted(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
 
-  rpc Usage(VMUsageRequest) returns (VMUsageResponse);
+  rpc Usage(ManagedVMUsageRequest) returns (ManagedVMUsageResponse);
 }
 
-message VM {
+message ManagedVM {
   string uuid = 1;
   string hostname = 2;
   string fqdname = 3;
   string cpus = 4;
   string memory = 5;
   string image = 6;
-  repeated VMVolume volumes = 7;
+  repeated ManagedVMVolume volumes = 7;
 }
 
-message VMVolume {
+message ManagedVMVolume {
   string name = 1;
   string uuid = 2;
   string storage_type = 3;
   uint64 size = 4;
 }
 
-message VMReport {
+message ManagedVMReport {
   string tenant = 1;
   string projectid = 2;
   string requestid = 3;
   google.protobuf.Timestamp timestamp = 4;
   google.protobuf.Timestamp start_date = 5;
   google.protobuf.Timestamp end_date = 6;
-  VM vm = 7;
+  ManagedVM vm = 7;
   repeated string annotations = 8;
 }
 
-message VMUsageRequest {
+message ManagedVMUsageRequest {
   google.protobuf.Timestamp from = 1;
   google.protobuf.Timestamp to = 2;
   optional string tenant = 3;
@@ -52,14 +52,14 @@ message VMUsageRequest {
   repeated string annotations = 5;
 }
 
-message VMUsageResponse {
+message ManagedVMUsageResponse {
   google.protobuf.Timestamp from = 1;
   google.protobuf.Timestamp to = 2;
-  repeated VMUsage usage = 3;
-  VMUsageAccumuluated accumulated_usage = 4;
+  repeated ManagedVMUsage usage = 3;
+  ManagedVMUsageAccumuluated accumulated_usage = 4;
 }
 
-message VMUsage {
+message ManagedVMUsage {
   string uuid = 1;
   string hostname = 2;
   string fqdname = 3;
@@ -74,10 +74,10 @@ message VMUsage {
   string project_id = 12;
   string project_name = 13;
   string request_id = 14;
-  repeated VMVolume volumes = 15;
+  repeated ManagedVMVolume volumes = 15;
 }
 
-message VMUsageAccumuluated {
+message ManagedVMUsageAccumuluated {
   google.protobuf.Duration lifetime = 1;
   string cpu_seconds = 2;
   string memory_seconds = 3;

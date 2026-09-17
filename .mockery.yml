@@ -2,9 +2,13 @@
 all: true
 recursive: true
 include-auto-generated: true
-dir: 'test/mocks/v1'
 filename: "{{.InterfaceName}}.go"
 pkgname: 'mocks'
 structname: '{{.InterfaceName}}'
 packages:
   github.com/fi-ts/accounting-go/pkg/apis/v1:
+    config:
+      dir: 'test/mocks/v1'
+  github.com/fi-ts/accounting-go/pkg/apis/vm/v1:
+    config:
+      dir: 'test/mocks/vm/v1'

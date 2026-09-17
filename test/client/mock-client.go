@@ -4,8 +4,10 @@ import (
 	"testing"
 
 	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
+	vmv1 "github.com/fi-ts/accounting-go/pkg/apis/vm/v1"
 	accountingclient "github.com/fi-ts/accounting-go/pkg/client"
 	accmocks "github.com/fi-ts/accounting-go/test/mocks/v1"
+	accvmmocks "github.com/fi-ts/accounting-go/test/mocks/vm/v1"
 	"github.com/stretchr/testify/mock"
 
 	healthv1 "google.golang.org/grpc/health/grpc_health_v1"
@@ -23,7 +25,7 @@ type AccountingMockFns struct {
 	ProductOption      func(mock *mock.Mock)
 	Machine            func(mock *mock.Mock)
 	MachineReservation func(mock *mock.Mock)
-	VM                 func(mock *mock.Mock)
+	ManagedVMService   func(mock *mock.Mock)
 }
 
 type AccountingMockClient struct {
@@ -38,7 +40,7 @@ type AccountingMockClient struct {
 	ProductOptionService      *accmocks.ProductOptionServiceClient
 	MachineService            *accmocks.MachineServiceClient
 	MachineReservationService *accmocks.MachineReservationServiceClient
-	VMService                 *accmocks.VMServiceClient
+	ManagedVMService          *accvmmocks.ManagedVMServiceClient
 }
 
 func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient, accountingclient.AccountingClient) {
@@ -54,7 +56,7 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		ProductOptionService:      &accmocks.ProductOptionServiceClient{},
 		MachineService:            &accmocks.MachineServiceClient{},
 		MachineReservationService: &accmocks.MachineReservationServiceClient{},
-		VMService:                 &accmocks.VMServiceClient{},
+		ManagedVMService:          &accvmmocks.ManagedVMServiceClient{},
 	}
 
 	if mockFns != nil {
@@ -91,8 +93,8 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		if mockFns.MachineReservation != nil {
 			mockFns.MachineReservation(&a.MachineReservationService.Mock)
 		}
-		if mockFns.VM != nil {
-			mockFns.VM(&a.VMService.Mock)
+		if mockFns.ManagedVMService != nil {
+			mockFns.ManagedVMService(&a.ManagedVMService.Mock)
 		}
 	}
 
@@ -151,8 +153,8 @@ func (c *AccountingMockClient) MachineReservation() v1.MachineReservationService
 	return c.MachineReservationService
 }
 
-func (c *AccountingMockClient) VM() v1.VMServiceClient {
-	return c.VMService
+func (c *AccountingMockClient) ManagedVM() vmv1.ManagedVMServiceClient {
+	return c.ManagedVMService
 }
 
 func (c *AccountingMockClient) AssertExpectations(t *testing.T) {
@@ -167,5 +169,5 @@ func (c *AccountingMockClient) AssertExpectations(t *testing.T) {
 	_ = c.ProductOptionService.AssertExpectations(t)
 	_ = c.MachineService.AssertExpectations(t)
 	_ = c.MachineReservationService.AssertExpectations(t)
-	_ = c.VMService.AssertExpectations(t)
+	_ = c.ManagedVMService.AssertExpectations(t)
 }
