@@ -7,8 +7,8 @@ package mocks
 import (
 	"context"
 
+	"github.com/fi-ts/accounting-go/pkg/apis/mvm/v1"
 	v10 "github.com/fi-ts/accounting-go/pkg/apis/v1"
-	"github.com/fi-ts/accounting-go/pkg/apis/vm/v1"
 	mock "github.com/stretchr/testify/mock"
 	"google.golang.org/grpc"
 )
