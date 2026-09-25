@@ -9,6 +9,6 @@ packages:
   github.com/fi-ts/accounting-go/pkg/apis/v1:
     config:
       dir: 'test/mocks/v1'
-  github.com/fi-ts/accounting-go/pkg/apis/vm/v1:
+  github.com/fi-ts/accounting-go/pkg/apis/mvm/v1:
     config:
-      dir: 'test/mocks/vm/v1'
+      dir: 'test/mocks/mvm/v1'

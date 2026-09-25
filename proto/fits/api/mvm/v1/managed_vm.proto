@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package fits.api.vm.v1;
+package fits.api.mvm.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "metalstack/io/accounting/api/v1/common.proto";
 
-option go_package = "pkg/apis/vm/v1";
+option go_package = "pkg/apis/mvm/v1";
 
 service ManagedVMService {
   rpc Added(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
@@ -14,23 +14,6 @@ service ManagedVMService {
   rpc Deleted(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
 
   rpc Usage(ManagedVMUsageRequest) returns (ManagedVMUsageResponse);
-}
-
-message ManagedVM {
-  string uuid = 1;
-  string hostname = 2;
-  string fqdname = 3;
-  string cpus = 4;
-  string memory = 5;
-  string image = 6;
-  repeated ManagedVMVolume volumes = 7;
-}
-
-message ManagedVMVolume {
-  string name = 1;
-  string uuid = 2;
-  string storage_type = 3;
-  uint64 size = 4;
 }
 
 message ManagedVMReport {
@@ -42,6 +25,25 @@ message ManagedVMReport {
   google.protobuf.Timestamp end_date = 6;
   ManagedVM vm = 7;
   repeated string annotations = 8;
+}
+
+message ManagedVM {
+  string uuid = 1;
+  string hostname = 2;
+  string fqdn = 3;
+  string cpus = 4;
+  string memory = 5;
+  string image = 6;
+  string serviceclass = 7;
+  string availability = 8;
+  repeated ManagedVMVolume volumes = 9;
+}
+
+message ManagedVMVolume {
+  string uuid = 1;
+  string name = 2;
+  string storage_type = 3;
+  uint64 size = 4;
 }
 
 message ManagedVMUsageRequest {
@@ -60,25 +62,21 @@ message ManagedVMUsageResponse {
 }
 
 message ManagedVMUsage {
-  string uuid = 1;
-  string hostname = 2;
-  string fqdname = 3;
-  google.protobuf.Timestamp vm_start = 4;
-  google.protobuf.Timestamp vm_end = 5;
-  google.protobuf.Duration lifetime = 6;
-  string cpu_seconds = 7;
-  string memory_seconds = 8;
-  repeated string warnings = 9;
-  repeated string annotations = 10;
-  string tenant = 11;
-  string project_id = 12;
-  string project_name = 13;
-  string request_id = 14;
-  repeated ManagedVMVolume volumes = 15;
+  string tenant = 1;
+  string project_id = 2;
+  string project_name = 3;
+  string request_id = 4;
+  string vm_uuid = 5;
+  string hostname = 6;
+  string fqdn = 7;
+  google.protobuf.Timestamp vm_start = 8;
+  google.protobuf.Timestamp vm_end = 9;
+  google.protobuf.Duration lifetime = 10;
+  repeated ManagedVMVolume volumes = 13;
+  repeated string warnings = 11;
+  repeated string annotations = 12;
 }
 
 message ManagedVMUsageAccumuluated {
   google.protobuf.Duration lifetime = 1;
-  string cpu_seconds = 2;
-  string memory_seconds = 3;
 }

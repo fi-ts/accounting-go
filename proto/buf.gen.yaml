@@ -6,7 +6,7 @@ plugins:
     out: ../
     opt:
       # This is needed because without it the generated import statements are wrong
-      - Mfits/api/vm/v1/managed_vm.proto=github.com/fi-ts/accounting-go/pkg/apis/vm/v1
+      - Mfits/api/mvm/v1/managed_vm.proto=github.com/fi-ts/accounting-go/pkg/apis/mvm/v1
       - Mmetalstack/io/accounting/api/v1/cluster.proto=github.com/fi-ts/accounting-go/pkg/apis/v1
       - Mmetalstack/io/accounting/api/v1/common.proto=github.com/fi-ts/accounting-go/pkg/apis/v1
       - Mmetalstack/io/accounting/api/v1/info.proto=github.com/fi-ts/accounting-go/pkg/apis/v1
@@ -26,7 +26,7 @@ plugins:
     opt:
       - require_unimplemented_servers=false
       # This is needed because without it the generated import statements are wrong
-      - Mfits/api/vm/v1/managed_vm.proto=github.com/fi-ts/accounting-go/pkg/apis/vm/v1
+      - Mfits/api/mvm/v1/managed_vm.proto=github.com/fi-ts/accounting-go/pkg/apis/mvm/v1
       - Mmetalstack/io/accounting/api/v1/cluster.proto=github.com/fi-ts/accounting-go/pkg/apis/v1
       - Mmetalstack/io/accounting/api/v1/common.proto=github.com/fi-ts/accounting-go/pkg/apis/v1
       - Mmetalstack/io/accounting/api/v1/info.proto=github.com/fi-ts/accounting-go/pkg/apis/v1

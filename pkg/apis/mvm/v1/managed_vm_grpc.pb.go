@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.2
 // - protoc             (unknown)
-// source: fits/api/vm/v1/managed_vm.proto
+// source: fits/api/mvm/v1/managed_vm.proto
 
 package v1
 
@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ManagedVMService_Added_FullMethodName    = "/fits.api.vm.v1.ManagedVMService/Added"
-	ManagedVMService_Modified_FullMethodName = "/fits.api.vm.v1.ManagedVMService/Modified"
-	ManagedVMService_Deleted_FullMethodName  = "/fits.api.vm.v1.ManagedVMService/Deleted"
-	ManagedVMService_Usage_FullMethodName    = "/fits.api.vm.v1.ManagedVMService/Usage"
+	ManagedVMService_Added_FullMethodName    = "/fits.api.mvm.v1.ManagedVMService/Added"
+	ManagedVMService_Modified_FullMethodName = "/fits.api.mvm.v1.ManagedVMService/Modified"
+	ManagedVMService_Deleted_FullMethodName  = "/fits.api.mvm.v1.ManagedVMService/Deleted"
+	ManagedVMService_Usage_FullMethodName    = "/fits.api.mvm.v1.ManagedVMService/Usage"
 )
 
 // ManagedVMServiceClient is the client API for ManagedVMService service.
@@ -209,7 +209,7 @@ func _ManagedVMService_Usage_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ManagedVMService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fits.api.vm.v1.ManagedVMService",
+	ServiceName: "fits.api.mvm.v1.ManagedVMService",
 	HandlerType: (*ManagedVMServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -230,5 +230,5 @@ var ManagedVMService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "fits/api/vm/v1/managed_vm.proto",
+	Metadata: "fits/api/mvm/v1/managed_vm.proto",
 }
