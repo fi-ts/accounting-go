@@ -3,11 +3,11 @@ package client
 import (
 	"testing"
 
+	mvmv1 "github.com/fi-ts/accounting-go/pkg/apis/mvm/v1"
 	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
-	vmv1 "github.com/fi-ts/accounting-go/pkg/apis/vm/v1"
 	accountingclient "github.com/fi-ts/accounting-go/pkg/client"
+	accmvmmocks "github.com/fi-ts/accounting-go/test/mocks/mvm/v1"
 	accmocks "github.com/fi-ts/accounting-go/test/mocks/v1"
-	accvmmocks "github.com/fi-ts/accounting-go/test/mocks/vm/v1"
 	"github.com/stretchr/testify/mock"
 
 	healthv1 "google.golang.org/grpc/health/grpc_health_v1"
@@ -40,7 +40,7 @@ type AccountingMockClient struct {
 	ProductOptionService      *accmocks.ProductOptionServiceClient
 	MachineService            *accmocks.MachineServiceClient
 	MachineReservationService *accmocks.MachineReservationServiceClient
-	ManagedVMService          *accvmmocks.ManagedVMServiceClient
+	ManagedVMService          *accmvmmocks.ManagedVMServiceClient
 }
 
 func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient, accountingclient.AccountingClient) {
@@ -56,7 +56,7 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		ProductOptionService:      &accmocks.ProductOptionServiceClient{},
 		MachineService:            &accmocks.MachineServiceClient{},
 		MachineReservationService: &accmocks.MachineReservationServiceClient{},
-		ManagedVMService:          &accvmmocks.ManagedVMServiceClient{},
+		ManagedVMService:          &accmvmmocks.ManagedVMServiceClient{},
 	}
 
 	if mockFns != nil {
@@ -153,7 +153,7 @@ func (c *AccountingMockClient) MachineReservation() v1.MachineReservationService
 	return c.MachineReservationService
 }
 
-func (c *AccountingMockClient) ManagedVM() vmv1.ManagedVMServiceClient {
+func (c *AccountingMockClient) ManagedVM() mvmv1.ManagedVMServiceClient {
 	return c.ManagedVMService
 }
 

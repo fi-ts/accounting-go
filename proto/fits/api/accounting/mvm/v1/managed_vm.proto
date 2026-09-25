@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package fits.api.accounting.mvm.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "metalstack/io/accounting/api/v1/common.proto";
+
+option go_package = "pkg/apis/mvm/v1";
+
+service ManagedVMService {
+  rpc Added(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
+  rpc Modified(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
+  rpc Deleted(ManagedVMReport) returns (metalstack.io.accounting.api.v1.Empty);
+
+  rpc Usage(ManagedVMUsageRequest) returns (ManagedVMUsageResponse);
+}
+
+message ManagedVMReport {
+  string tenant = 1;
+  string projectid = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  ManagedVM vm = 4;
+  repeated string annotations = 5;
+}
+
+message ManagedVM {
+  string uuid = 1;
+  string hostname = 2;
+  string fqdn = 3;
+  uint64 cpus = 4;
+  uint64 memory = 5;
+  string image = 6;
+  string serviceclass = 7;
+  string availability = 8;
+  repeated ManagedVMDisk disks = 9;
+}
+
+message ManagedVMDisk {
+  string uuid = 1;
+  string name = 2;
+  string storage_class = 3;
+  uint64 size = 4;
+}
+
+message ManagedVMUsageRequest {
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  optional string tenant = 3;
+  optional string projectid = 4;
+}
+
+message ManagedVMUsageResponse {
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  repeated ManagedVMUsage usage = 3;
+  ManagedVMUsageAccumuluated accumulated_usage = 4;
+}
+
+message ManagedVMUsage {
+  string tenant = 1;
+  string project_id = 2;
+  string project_name = 3;
+  string vm_uuid = 4;
+  string hostname = 5;
+  string fqdn = 6;
+  google.protobuf.Duration lifetime = 7;
+  repeated ManagedVMCpuUsage cpu_usage = 8;
+  repeated ManagedVMMemoryUsage memory_usage = 9;
+  repeated ManagedVMImageUsage image_usage = 10;
+  repeated ManagedVMDiskUsage disk_usage = 11;
+  repeated string annotations = 12;
+}
+
+message ManagedVMCpuUsage {
+  uint64 cpus = 1;
+  google.protobuf.Duration lifetime = 2;
+}
+
+message ManagedVMMemoryUsage {
+  uint64 memory = 1;
+  google.protobuf.Duration lifetime = 2;
+}
+
+message ManagedVMImageUsage {
+  string image = 1;
+  string serviceclass = 2;
+  string availability = 3;
+  google.protobuf.Duration lifetime = 4;
+}
+
+message ManagedVMDiskUsage {
+  string uuid = 1;
+  string storage_class = 2;
+  uint64 size = 3;
+  google.protobuf.Duration lifetime = 4;
+}
+
+message ManagedVMUsageAccumuluated {
+  google.protobuf.Duration lifetime = 1;
+}
