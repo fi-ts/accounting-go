@@ -159,6 +159,7 @@ type ManagedVM struct {
 	Serviceclass  string                 `protobuf:"bytes,7,opt,name=serviceclass,proto3" json:"serviceclass,omitempty"`
 	Availability  string                 `protobuf:"bytes,8,opt,name=availability,proto3" json:"availability,omitempty"`
 	Disks         []*ManagedVMDisk       `protobuf:"bytes,9,rep,name=disks,proto3" json:"disks,omitempty"`
+	Encrypted     bool                   `protobuf:"varint,10,opt,name=encrypted,proto3" json:"encrypted,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -256,11 +257,17 @@ func (x *ManagedVM) GetDisks() []*ManagedVMDisk {
 	return nil
 }
 
+func (x *ManagedVM) GetEncrypted() bool {
+	if x != nil {
+		return x.Encrypted
+	}
+	return false
+}
+
 type ManagedVMDisk struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	StorageClass  string                 `protobuf:"bytes,2,opt,name=storage_class,json=storageClass,proto3" json:"storage_class,omitempty"`
-	Size          uint64                 `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
+	Size          uint64                 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -298,13 +305,6 @@ func (*ManagedVMDisk) Descriptor() ([]byte, []int) {
 func (x *ManagedVMDisk) GetUuid() string {
 	if x != nil {
 		return x.Uuid
-	}
-	return ""
-}
-
-func (x *ManagedVMDisk) GetStorageClass() string {
-	if x != nil {
-		return x.StorageClass
 	}
 	return ""
 }
@@ -472,6 +472,7 @@ type ManagedVMUsage struct {
 	Annotations   []string                `protobuf:"bytes,16,rep,name=annotations,proto3" json:"annotations,omitempty"`
 	Billable      bool                    `protobuf:"varint,17,opt,name=billable,proto3" json:"billable,omitempty"`
 	BillableFrom  *timestamppb.Timestamp  `protobuf:"bytes,18,opt,name=billable_from,json=billableFrom,proto3" json:"billable_from,omitempty"`
+	Encrypted     bool                    `protobuf:"varint,19,opt,name=encrypted,proto3" json:"encrypted,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -630,6 +631,13 @@ func (x *ManagedVMUsage) GetBillableFrom() *timestamppb.Timestamp {
 		return x.BillableFrom
 	}
 	return nil
+}
+
+func (x *ManagedVMUsage) GetEncrypted() bool {
+	if x != nil {
+		return x.Encrypted
+	}
+	return false
 }
 
 type ManagedVMCpuUsage struct {
@@ -807,9 +815,8 @@ func (x *ManagedVMImageUsage) GetLifetime() *durationpb.Duration {
 type ManagedVMDiskUsage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	StorageClass  string                 `protobuf:"bytes,2,opt,name=storage_class,json=storageClass,proto3" json:"storage_class,omitempty"`
-	Size          uint64                 `protobuf:"varint,3,opt,name=size,proto3" json:"size,omitempty"`
-	Lifetime      *durationpb.Duration   `protobuf:"bytes,4,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
+	Size          uint64                 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	Lifetime      *durationpb.Duration   `protobuf:"bytes,3,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -847,13 +854,6 @@ func (*ManagedVMDiskUsage) Descriptor() ([]byte, []int) {
 func (x *ManagedVMDiskUsage) GetUuid() string {
 	if x != nil {
 		return x.Uuid
-	}
-	return ""
-}
-
-func (x *ManagedVMDiskUsage) GetStorageClass() string {
-	if x != nil {
-		return x.StorageClass
 	}
 	return ""
 }
@@ -935,7 +935,7 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\bbillable\x18\n" +
 	" \x01(\bR\bbillable\x12D\n" +
 	"\rbillable_from\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01B\x10\n" +
-	"\x0e_billable_from\"\x9a\x02\n" +
+	"\x0e_billable_from\"\xb8\x02\n" +
 	"\tManagedVM\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
 	"\bhostname\x18\x02 \x01(\tR\bhostname\x12\x12\n" +
@@ -945,11 +945,12 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x05image\x18\x06 \x01(\tR\x05image\x12\"\n" +
 	"\fserviceclass\x18\a \x01(\tR\fserviceclass\x12\"\n" +
 	"\favailability\x18\b \x01(\tR\favailability\x12?\n" +
-	"\x05disks\x18\t \x03(\v2).fits.api.accounting.mvm.v1.ManagedVMDiskR\x05disks\"\\\n" +
+	"\x05disks\x18\t \x03(\v2).fits.api.accounting.mvm.v1.ManagedVMDiskR\x05disks\x12\x1c\n" +
+	"\tencrypted\x18\n" +
+	" \x01(\bR\tencrypted\"7\n" +
 	"\rManagedVMDisk\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
-	"\rstorage_class\x18\x02 \x01(\tR\fstorageClass\x12\x12\n" +
-	"\x04size\x18\x03 \x01(\x04R\x04size\"\xcc\x01\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\x04R\x04size\"\xcc\x01\n" +
 	"\x15ManagedVMUsageRequest\x12.\n" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12\x1b\n" +
@@ -962,7 +963,7 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12@\n" +
 	"\x05usage\x18\x03 \x03(\v2*.fits.api.accounting.mvm.v1.ManagedVMUsageR\x05usage\x12c\n" +
-	"\x11accumulated_usage\x18\x04 \x01(\v26.fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluatedR\x10accumulatedUsage\"\xa1\x06\n" +
+	"\x11accumulated_usage\x18\x04 \x01(\v26.fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluatedR\x10accumulatedUsage\"\xbf\x06\n" +
 	"\x0eManagedVMUsage\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1f\n" +
 	"\vtenant_name\x18\x02 \x01(\tR\n" +
@@ -986,7 +987,8 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\forder_number\x18\x0f \x01(\tR\vorderNumber\x12 \n" +
 	"\vannotations\x18\x10 \x03(\tR\vannotations\x12\x1a\n" +
 	"\bbillable\x18\x11 \x01(\bR\bbillable\x12?\n" +
-	"\rbillable_from\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\fbillableFrom\"^\n" +
+	"\rbillable_from\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\fbillableFrom\x12\x1c\n" +
+	"\tencrypted\x18\x13 \x01(\bR\tencrypted\"^\n" +
 	"\x11ManagedVMCpuUsage\x12\x12\n" +
 	"\x04cpus\x18\x01 \x01(\x04R\x04cpus\x125\n" +
 	"\blifetime\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"e\n" +
@@ -997,12 +999,11 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x05image\x18\x01 \x01(\tR\x05image\x12\"\n" +
 	"\fserviceclass\x18\x02 \x01(\tR\fserviceclass\x12\"\n" +
 	"\favailability\x18\x03 \x01(\tR\favailability\x125\n" +
-	"\blifetime\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"\x98\x01\n" +
+	"\blifetime\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"s\n" +
 	"\x12ManagedVMDiskUsage\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12#\n" +
-	"\rstorage_class\x18\x02 \x01(\tR\fstorageClass\x12\x12\n" +
-	"\x04size\x18\x03 \x01(\x04R\x04size\x125\n" +
-	"\blifetime\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"S\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x12\n" +
+	"\x04size\x18\x02 \x01(\x04R\x04size\x125\n" +
+	"\blifetime\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"S\n" +
 	"\x1aManagedVMUsageAccumuluated\x125\n" +
 	"\blifetime\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\blifetime2\xa1\x03\n" +
 	"\x10ManagedVMService\x12\\\n" +

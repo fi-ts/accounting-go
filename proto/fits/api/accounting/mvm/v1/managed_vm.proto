@@ -40,12 +40,12 @@ message ManagedVM {
   string serviceclass = 7;
   string availability = 8;
   repeated ManagedVMDisk disks = 9;
+  bool encrypted = 10;
 }
 
 message ManagedVMDisk {
   string uuid = 1;
-  string storage_class = 2;
-  uint64 size = 3;
+  uint64 size = 2;
 }
 
 message ManagedVMUsageRequest {
@@ -81,6 +81,7 @@ message ManagedVMUsage {
   repeated string annotations = 16;
   bool billable = 17;
   google.protobuf.Timestamp billable_from = 18;
+  bool encrypted = 19;
 }
 
 message ManagedVMCpuUsage {
@@ -102,9 +103,8 @@ message ManagedVMImageUsage {
 
 message ManagedVMDiskUsage {
   string uuid = 1;
-  string storage_class = 2;
-  uint64 size = 3;
-  google.protobuf.Duration lifetime = 4;
+  uint64 size = 2;
+  google.protobuf.Duration lifetime = 3;
 }
 
 message ManagedVMUsageAccumuluated {
