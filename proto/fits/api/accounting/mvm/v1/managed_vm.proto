@@ -28,6 +28,7 @@ message ManagedVMReport {
   repeated string annotations = 9;
   bool billable = 10;
   optional google.protobuf.Timestamp billable_from = 11;
+  bool backup = 12;
 }
 
 message ManagedVM {
@@ -82,6 +83,7 @@ message ManagedVMUsage {
   bool billable = 17;
   google.protobuf.Timestamp billable_from = 18;
   bool encrypted = 19;
+  bool backup = 20;
 }
 
 message ManagedVMCpuUsage {

@@ -37,6 +37,7 @@ type ManagedVMReport struct {
 	Annotations   []string               `protobuf:"bytes,9,rep,name=annotations,proto3" json:"annotations,omitempty"`
 	Billable      bool                   `protobuf:"varint,10,opt,name=billable,proto3" json:"billable,omitempty"`
 	BillableFrom  *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=billable_from,json=billableFrom,proto3,oneof" json:"billable_from,omitempty"`
+	Backup        bool                   `protobuf:"varint,12,opt,name=backup,proto3" json:"backup,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -146,6 +147,13 @@ func (x *ManagedVMReport) GetBillableFrom() *timestamppb.Timestamp {
 		return x.BillableFrom
 	}
 	return nil
+}
+
+func (x *ManagedVMReport) GetBackup() bool {
+	if x != nil {
+		return x.Backup
+	}
+	return false
 }
 
 type ManagedVM struct {
@@ -473,6 +481,7 @@ type ManagedVMUsage struct {
 	Billable      bool                    `protobuf:"varint,17,opt,name=billable,proto3" json:"billable,omitempty"`
 	BillableFrom  *timestamppb.Timestamp  `protobuf:"bytes,18,opt,name=billable_from,json=billableFrom,proto3" json:"billable_from,omitempty"`
 	Encrypted     bool                    `protobuf:"varint,19,opt,name=encrypted,proto3" json:"encrypted,omitempty"`
+	Backup        bool                    `protobuf:"varint,20,opt,name=backup,proto3" json:"backup,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -636,6 +645,13 @@ func (x *ManagedVMUsage) GetBillableFrom() *timestamppb.Timestamp {
 func (x *ManagedVMUsage) GetEncrypted() bool {
 	if x != nil {
 		return x.Encrypted
+	}
+	return false
+}
+
+func (x *ManagedVMUsage) GetBackup() bool {
+	if x != nil {
+		return x.Backup
 	}
 	return false
 }
@@ -936,7 +952,7 @@ var File_fits_api_accounting_mvm_v1_managed_vm_proto protoreflect.FileDescriptor
 
 const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\n" +
-	"+fits/api/accounting/mvm/v1/managed_vm.proto\x12\x1afits.api.accounting.mvm.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\xc4\x03\n" +
+	"+fits/api/accounting/mvm/v1/managed_vm.proto\x12\x1afits.api.accounting.mvm.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\xdc\x03\n" +
 	"\x0fManagedVMReport\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1f\n" +
 	"\vtenant_name\x18\x02 \x01(\tR\n" +
@@ -950,7 +966,8 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\vannotations\x18\t \x03(\tR\vannotations\x12\x1a\n" +
 	"\bbillable\x18\n" +
 	" \x01(\bR\bbillable\x12D\n" +
-	"\rbillable_from\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01B\x10\n" +
+	"\rbillable_from\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01\x12\x16\n" +
+	"\x06backup\x18\f \x01(\bR\x06backupB\x10\n" +
 	"\x0e_billable_from\"\xb8\x02\n" +
 	"\tManagedVM\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
@@ -979,7 +996,7 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12@\n" +
 	"\x05usage\x18\x03 \x03(\v2*.fits.api.accounting.mvm.v1.ManagedVMUsageR\x05usage\x12c\n" +
-	"\x11accumulated_usage\x18\x04 \x01(\v26.fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluatedR\x10accumulatedUsage\"\xbf\x06\n" +
+	"\x11accumulated_usage\x18\x04 \x01(\v26.fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluatedR\x10accumulatedUsage\"\xd7\x06\n" +
 	"\x0eManagedVMUsage\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1f\n" +
 	"\vtenant_name\x18\x02 \x01(\tR\n" +
@@ -1004,7 +1021,8 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\vannotations\x18\x10 \x03(\tR\vannotations\x12\x1a\n" +
 	"\bbillable\x18\x11 \x01(\bR\bbillable\x12?\n" +
 	"\rbillable_from\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\fbillableFrom\x12\x1c\n" +
-	"\tencrypted\x18\x13 \x01(\bR\tencrypted\"\x8b\x01\n" +
+	"\tencrypted\x18\x13 \x01(\bR\tencrypted\x12\x16\n" +
+	"\x06backup\x18\x14 \x01(\bR\x06backup\"\x8b\x01\n" +
 	"\x11ManagedVMCpuUsage\x12\x12\n" +
 	"\x04cpus\x18\x01 \x01(\x04R\x04cpus\x12+\n" +
 	"\x11high_availability\x18\x02 \x01(\bR\x10highAvailability\x125\n" +
