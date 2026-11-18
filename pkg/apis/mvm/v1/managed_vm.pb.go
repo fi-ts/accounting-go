@@ -660,7 +660,8 @@ type ManagedVMCpuUsage struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Cpus             uint64                 `protobuf:"varint,1,opt,name=cpus,proto3" json:"cpus,omitempty"`
 	HighAvailability bool                   `protobuf:"varint,2,opt,name=high_availability,json=highAvailability,proto3" json:"high_availability,omitempty"`
-	Lifetime         *durationpb.Duration   `protobuf:"bytes,3,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
+	Gen1             bool                   `protobuf:"varint,3,opt,name=gen1,proto3" json:"gen1,omitempty"`
+	Lifetime         *durationpb.Duration   `protobuf:"bytes,4,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -709,6 +710,13 @@ func (x *ManagedVMCpuUsage) GetHighAvailability() bool {
 	return false
 }
 
+func (x *ManagedVMCpuUsage) GetGen1() bool {
+	if x != nil {
+		return x.Gen1
+	}
+	return false
+}
+
 func (x *ManagedVMCpuUsage) GetLifetime() *durationpb.Duration {
 	if x != nil {
 		return x.Lifetime
@@ -720,7 +728,8 @@ type ManagedVMMemoryUsage struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Memory           uint64                 `protobuf:"varint,1,opt,name=memory,proto3" json:"memory,omitempty"`
 	HighAvailability bool                   `protobuf:"varint,2,opt,name=high_availability,json=highAvailability,proto3" json:"high_availability,omitempty"`
-	Lifetime         *durationpb.Duration   `protobuf:"bytes,3,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
+	Gen1             bool                   `protobuf:"varint,3,opt,name=gen1,proto3" json:"gen1,omitempty"`
+	Lifetime         *durationpb.Duration   `protobuf:"bytes,4,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -765,6 +774,13 @@ func (x *ManagedVMMemoryUsage) GetMemory() uint64 {
 func (x *ManagedVMMemoryUsage) GetHighAvailability() bool {
 	if x != nil {
 		return x.HighAvailability
+	}
+	return false
+}
+
+func (x *ManagedVMMemoryUsage) GetGen1() bool {
+	if x != nil {
+		return x.Gen1
 	}
 	return false
 }
@@ -1022,15 +1038,17 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\bbillable\x18\x11 \x01(\bR\bbillable\x12?\n" +
 	"\rbillable_from\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\fbillableFrom\x12\x1c\n" +
 	"\tencrypted\x18\x13 \x01(\bR\tencrypted\x12\x16\n" +
-	"\x06backup\x18\x14 \x01(\bR\x06backup\"\x8b\x01\n" +
+	"\x06backup\x18\x14 \x01(\bR\x06backup\"\x9f\x01\n" +
 	"\x11ManagedVMCpuUsage\x12\x12\n" +
 	"\x04cpus\x18\x01 \x01(\x04R\x04cpus\x12+\n" +
-	"\x11high_availability\x18\x02 \x01(\bR\x10highAvailability\x125\n" +
-	"\blifetime\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"\x92\x01\n" +
+	"\x11high_availability\x18\x02 \x01(\bR\x10highAvailability\x12\x12\n" +
+	"\x04gen1\x18\x03 \x01(\bR\x04gen1\x125\n" +
+	"\blifetime\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"\xa6\x01\n" +
 	"\x14ManagedVMMemoryUsage\x12\x16\n" +
 	"\x06memory\x18\x01 \x01(\x04R\x06memory\x12+\n" +
-	"\x11high_availability\x18\x02 \x01(\bR\x10highAvailability\x125\n" +
-	"\blifetime\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"\xaa\x01\n" +
+	"\x11high_availability\x18\x02 \x01(\bR\x10highAvailability\x12\x12\n" +
+	"\x04gen1\x18\x03 \x01(\bR\x04gen1\x125\n" +
+	"\blifetime\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"\xaa\x01\n" +
 	"\x13ManagedVMImageUsage\x12\x14\n" +
 	"\x05image\x18\x01 \x01(\tR\x05image\x12\"\n" +
 	"\fserviceclass\x18\x02 \x01(\tR\fserviceclass\x12\"\n" +

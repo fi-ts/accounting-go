@@ -89,13 +89,15 @@ message ManagedVMUsage {
 message ManagedVMCpuUsage {
   uint64 cpus = 1;
   bool high_availability = 2;
-  google.protobuf.Duration lifetime = 3;
+  bool gen1 = 3;
+  google.protobuf.Duration lifetime = 4;
 }
 
 message ManagedVMMemoryUsage {
   uint64 memory = 1;
   bool high_availability = 2;
-  google.protobuf.Duration lifetime = 3;
+  bool gen1 = 3;
+  google.protobuf.Duration lifetime = 4;
 }
 
 message ManagedVMImageUsage {
