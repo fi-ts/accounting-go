@@ -32,12 +32,11 @@ type ManagedVMReport struct {
 	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	Vm            *ManagedVM             `protobuf:"bytes,5,opt,name=vm,proto3" json:"vm,omitempty"`
 	Contract      bool                   `protobuf:"varint,6,opt,name=contract,proto3" json:"contract,omitempty"`
-	Stage         string                 `protobuf:"bytes,7,opt,name=stage,proto3" json:"stage,omitempty"`
-	OrderNumber   string                 `protobuf:"bytes,8,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	Annotations   []string               `protobuf:"bytes,9,rep,name=annotations,proto3" json:"annotations,omitempty"`
-	Billable      bool                   `protobuf:"varint,10,opt,name=billable,proto3" json:"billable,omitempty"`
-	BillableFrom  *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=billable_from,json=billableFrom,proto3,oneof" json:"billable_from,omitempty"`
-	Backup        bool                   `protobuf:"varint,12,opt,name=backup,proto3" json:"backup,omitempty"`
+	OrderNumber   string                 `protobuf:"bytes,7,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	Annotations   []string               `protobuf:"bytes,8,rep,name=annotations,proto3" json:"annotations,omitempty"`
+	Billable      bool                   `protobuf:"varint,9,opt,name=billable,proto3" json:"billable,omitempty"`
+	BillableFrom  *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=billable_from,json=billableFrom,proto3,oneof" json:"billable_from,omitempty"`
+	Backup        bool                   `protobuf:"varint,11,opt,name=backup,proto3" json:"backup,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -112,13 +111,6 @@ func (x *ManagedVMReport) GetContract() bool {
 		return x.Contract
 	}
 	return false
-}
-
-func (x *ManagedVMReport) GetStage() string {
-	if x != nil {
-		return x.Stage
-	}
-	return ""
 }
 
 func (x *ManagedVMReport) GetOrderNumber() string {
@@ -465,23 +457,21 @@ type ManagedVMUsage struct {
 	Tenant        string                  `protobuf:"bytes,1,opt,name=tenant,proto3" json:"tenant,omitempty"`
 	TenantName    string                  `protobuf:"bytes,2,opt,name=tenant_name,json=tenantName,proto3" json:"tenant_name,omitempty"`
 	ProjectId     string                  `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
-	ProjectName   string                  `protobuf:"bytes,4,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
-	VmUuid        string                  `protobuf:"bytes,5,opt,name=vm_uuid,json=vmUuid,proto3" json:"vm_uuid,omitempty"`
-	Hostname      string                  `protobuf:"bytes,6,opt,name=hostname,proto3" json:"hostname,omitempty"`
-	Fqdn          string                  `protobuf:"bytes,7,opt,name=fqdn,proto3" json:"fqdn,omitempty"`
-	Lifetime      *durationpb.Duration    `protobuf:"bytes,8,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
-	CpuUsage      []*ManagedVMCpuUsage    `protobuf:"bytes,9,rep,name=cpu_usage,json=cpuUsage,proto3" json:"cpu_usage,omitempty"`
-	MemoryUsage   []*ManagedVMMemoryUsage `protobuf:"bytes,10,rep,name=memory_usage,json=memoryUsage,proto3" json:"memory_usage,omitempty"`
-	ImageUsage    []*ManagedVMImageUsage  `protobuf:"bytes,11,rep,name=image_usage,json=imageUsage,proto3" json:"image_usage,omitempty"`
-	DiskUsage     []*ManagedVMDiskUsage   `protobuf:"bytes,12,rep,name=disk_usage,json=diskUsage,proto3" json:"disk_usage,omitempty"`
-	Contract      bool                    `protobuf:"varint,13,opt,name=contract,proto3" json:"contract,omitempty"`
-	Stage         string                  `protobuf:"bytes,14,opt,name=stage,proto3" json:"stage,omitempty"`
-	OrderNumber   string                  `protobuf:"bytes,15,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
-	Annotations   []string                `protobuf:"bytes,16,rep,name=annotations,proto3" json:"annotations,omitempty"`
-	Billable      bool                    `protobuf:"varint,17,opt,name=billable,proto3" json:"billable,omitempty"`
-	BillableFrom  *timestamppb.Timestamp  `protobuf:"bytes,18,opt,name=billable_from,json=billableFrom,proto3" json:"billable_from,omitempty"`
-	Encrypted     bool                    `protobuf:"varint,19,opt,name=encrypted,proto3" json:"encrypted,omitempty"`
-	Backup        bool                    `protobuf:"varint,20,opt,name=backup,proto3" json:"backup,omitempty"`
+	VmUuid        string                  `protobuf:"bytes,4,opt,name=vm_uuid,json=vmUuid,proto3" json:"vm_uuid,omitempty"`
+	Hostname      string                  `protobuf:"bytes,5,opt,name=hostname,proto3" json:"hostname,omitempty"`
+	Fqdn          string                  `protobuf:"bytes,6,opt,name=fqdn,proto3" json:"fqdn,omitempty"`
+	Lifetime      *durationpb.Duration    `protobuf:"bytes,7,opt,name=lifetime,proto3" json:"lifetime,omitempty"`
+	CpuUsage      []*ManagedVMCpuUsage    `protobuf:"bytes,8,rep,name=cpu_usage,json=cpuUsage,proto3" json:"cpu_usage,omitempty"`
+	MemoryUsage   []*ManagedVMMemoryUsage `protobuf:"bytes,9,rep,name=memory_usage,json=memoryUsage,proto3" json:"memory_usage,omitempty"`
+	ImageUsage    []*ManagedVMImageUsage  `protobuf:"bytes,10,rep,name=image_usage,json=imageUsage,proto3" json:"image_usage,omitempty"`
+	DiskUsage     []*ManagedVMDiskUsage   `protobuf:"bytes,11,rep,name=disk_usage,json=diskUsage,proto3" json:"disk_usage,omitempty"`
+	Contract      bool                    `protobuf:"varint,12,opt,name=contract,proto3" json:"contract,omitempty"`
+	OrderNumber   string                  `protobuf:"bytes,13,opt,name=order_number,json=orderNumber,proto3" json:"order_number,omitempty"`
+	Annotations   []string                `protobuf:"bytes,14,rep,name=annotations,proto3" json:"annotations,omitempty"`
+	Billable      bool                    `protobuf:"varint,15,opt,name=billable,proto3" json:"billable,omitempty"`
+	BillableFrom  *timestamppb.Timestamp  `protobuf:"bytes,16,opt,name=billable_from,json=billableFrom,proto3" json:"billable_from,omitempty"`
+	Encrypted     bool                    `protobuf:"varint,17,opt,name=encrypted,proto3" json:"encrypted,omitempty"`
+	Backup        bool                    `protobuf:"varint,18,opt,name=backup,proto3" json:"backup,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -533,13 +523,6 @@ func (x *ManagedVMUsage) GetTenantName() string {
 func (x *ManagedVMUsage) GetProjectId() string {
 	if x != nil {
 		return x.ProjectId
-	}
-	return ""
-}
-
-func (x *ManagedVMUsage) GetProjectName() string {
-	if x != nil {
-		return x.ProjectName
 	}
 	return ""
 }
@@ -605,13 +588,6 @@ func (x *ManagedVMUsage) GetContract() bool {
 		return x.Contract
 	}
 	return false
-}
-
-func (x *ManagedVMUsage) GetStage() string {
-	if x != nil {
-		return x.Stage
-	}
-	return ""
 }
 
 func (x *ManagedVMUsage) GetOrderNumber() string {
@@ -968,7 +944,7 @@ var File_fits_api_accounting_mvm_v1_managed_vm_proto protoreflect.FileDescriptor
 
 const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\n" +
-	"+fits/api/accounting/mvm/v1/managed_vm.proto\x12\x1afits.api.accounting.mvm.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\xdc\x03\n" +
+	"+fits/api/accounting/mvm/v1/managed_vm.proto\x12\x1afits.api.accounting.mvm.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\xc6\x03\n" +
 	"\x0fManagedVMReport\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1f\n" +
 	"\vtenant_name\x18\x02 \x01(\tR\n" +
@@ -976,14 +952,13 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\tprojectid\x18\x03 \x01(\tR\tprojectid\x128\n" +
 	"\ttimestamp\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x125\n" +
 	"\x02vm\x18\x05 \x01(\v2%.fits.api.accounting.mvm.v1.ManagedVMR\x02vm\x12\x1a\n" +
-	"\bcontract\x18\x06 \x01(\bR\bcontract\x12\x14\n" +
-	"\x05stage\x18\a \x01(\tR\x05stage\x12!\n" +
-	"\forder_number\x18\b \x01(\tR\vorderNumber\x12 \n" +
-	"\vannotations\x18\t \x03(\tR\vannotations\x12\x1a\n" +
-	"\bbillable\x18\n" +
-	" \x01(\bR\bbillable\x12D\n" +
-	"\rbillable_from\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01\x12\x16\n" +
-	"\x06backup\x18\f \x01(\bR\x06backupB\x10\n" +
+	"\bcontract\x18\x06 \x01(\bR\bcontract\x12!\n" +
+	"\forder_number\x18\a \x01(\tR\vorderNumber\x12 \n" +
+	"\vannotations\x18\b \x03(\tR\vannotations\x12\x1a\n" +
+	"\bbillable\x18\t \x01(\bR\bbillable\x12D\n" +
+	"\rbillable_from\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampH\x00R\fbillableFrom\x88\x01\x01\x12\x16\n" +
+	"\x06backup\x18\v \x01(\bR\x06backupB\x10\n" +
 	"\x0e_billable_from\"\xb8\x02\n" +
 	"\tManagedVM\x12\x12\n" +
 	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12\x1a\n" +
@@ -1012,33 +987,31 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x04from\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x04from\x12*\n" +
 	"\x02to\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x02to\x12@\n" +
 	"\x05usage\x18\x03 \x03(\v2*.fits.api.accounting.mvm.v1.ManagedVMUsageR\x05usage\x12c\n" +
-	"\x11accumulated_usage\x18\x04 \x01(\v26.fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluatedR\x10accumulatedUsage\"\xd7\x06\n" +
+	"\x11accumulated_usage\x18\x04 \x01(\v26.fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluatedR\x10accumulatedUsage\"\x9e\x06\n" +
 	"\x0eManagedVMUsage\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1f\n" +
 	"\vtenant_name\x18\x02 \x01(\tR\n" +
 	"tenantName\x12\x1d\n" +
 	"\n" +
-	"project_id\x18\x03 \x01(\tR\tprojectId\x12!\n" +
-	"\fproject_name\x18\x04 \x01(\tR\vprojectName\x12\x17\n" +
-	"\avm_uuid\x18\x05 \x01(\tR\x06vmUuid\x12\x1a\n" +
-	"\bhostname\x18\x06 \x01(\tR\bhostname\x12\x12\n" +
-	"\x04fqdn\x18\a \x01(\tR\x04fqdn\x125\n" +
-	"\blifetime\x18\b \x01(\v2\x19.google.protobuf.DurationR\blifetime\x12J\n" +
-	"\tcpu_usage\x18\t \x03(\v2-.fits.api.accounting.mvm.v1.ManagedVMCpuUsageR\bcpuUsage\x12S\n" +
-	"\fmemory_usage\x18\n" +
-	" \x03(\v20.fits.api.accounting.mvm.v1.ManagedVMMemoryUsageR\vmemoryUsage\x12P\n" +
-	"\vimage_usage\x18\v \x03(\v2/.fits.api.accounting.mvm.v1.ManagedVMImageUsageR\n" +
+	"project_id\x18\x03 \x01(\tR\tprojectId\x12\x17\n" +
+	"\avm_uuid\x18\x04 \x01(\tR\x06vmUuid\x12\x1a\n" +
+	"\bhostname\x18\x05 \x01(\tR\bhostname\x12\x12\n" +
+	"\x04fqdn\x18\x06 \x01(\tR\x04fqdn\x125\n" +
+	"\blifetime\x18\a \x01(\v2\x19.google.protobuf.DurationR\blifetime\x12J\n" +
+	"\tcpu_usage\x18\b \x03(\v2-.fits.api.accounting.mvm.v1.ManagedVMCpuUsageR\bcpuUsage\x12S\n" +
+	"\fmemory_usage\x18\t \x03(\v20.fits.api.accounting.mvm.v1.ManagedVMMemoryUsageR\vmemoryUsage\x12P\n" +
+	"\vimage_usage\x18\n" +
+	" \x03(\v2/.fits.api.accounting.mvm.v1.ManagedVMImageUsageR\n" +
 	"imageUsage\x12M\n" +
 	"\n" +
-	"disk_usage\x18\f \x03(\v2..fits.api.accounting.mvm.v1.ManagedVMDiskUsageR\tdiskUsage\x12\x1a\n" +
-	"\bcontract\x18\r \x01(\bR\bcontract\x12\x14\n" +
-	"\x05stage\x18\x0e \x01(\tR\x05stage\x12!\n" +
-	"\forder_number\x18\x0f \x01(\tR\vorderNumber\x12 \n" +
-	"\vannotations\x18\x10 \x03(\tR\vannotations\x12\x1a\n" +
-	"\bbillable\x18\x11 \x01(\bR\bbillable\x12?\n" +
-	"\rbillable_from\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\fbillableFrom\x12\x1c\n" +
-	"\tencrypted\x18\x13 \x01(\bR\tencrypted\x12\x16\n" +
-	"\x06backup\x18\x14 \x01(\bR\x06backup\"\x9f\x01\n" +
+	"disk_usage\x18\v \x03(\v2..fits.api.accounting.mvm.v1.ManagedVMDiskUsageR\tdiskUsage\x12\x1a\n" +
+	"\bcontract\x18\f \x01(\bR\bcontract\x12!\n" +
+	"\forder_number\x18\r \x01(\tR\vorderNumber\x12 \n" +
+	"\vannotations\x18\x0e \x03(\tR\vannotations\x12\x1a\n" +
+	"\bbillable\x18\x0f \x01(\bR\bbillable\x12?\n" +
+	"\rbillable_from\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\fbillableFrom\x12\x1c\n" +
+	"\tencrypted\x18\x11 \x01(\bR\tencrypted\x12\x16\n" +
+	"\x06backup\x18\x12 \x01(\bR\x06backup\"\x9f\x01\n" +
 	"\x11ManagedVMCpuUsage\x12\x12\n" +
 	"\x04cpus\x18\x01 \x01(\x04R\x04cpus\x12+\n" +
 	"\x11high_availability\x18\x02 \x01(\bR\x10highAvailability\x12\x12\n" +
