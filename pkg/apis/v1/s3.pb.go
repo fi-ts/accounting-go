@@ -630,7 +630,7 @@ const file_metalstack_io_accounting_api_v1_s3_proto_rawDesc = "" +
 	"\fcurrent_size\x18\x04 \x01(\tR\vcurrentSize2\xdf\x01\n" +
 	"\tS3Service\x12f\n" +
 	"\vBucketStats\x12/.metalstack.io.accounting.api.v1.S3BucketReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12j\n" +
-	"\x05Usage\x12/.metalstack.io.accounting.api.v1.S3UsageRequest\x1a0.metalstack.io.accounting.api.v1.S3UsageResponseB\rZ\vpkg/apis/v1b\x06proto3"
+	"\x05Usage\x12/.metalstack.io.accounting.api.v1.S3UsageRequest\x1a0.metalstack.io.accounting.api.v1.S3UsageResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_s3_proto_rawDescOnce sync.Once

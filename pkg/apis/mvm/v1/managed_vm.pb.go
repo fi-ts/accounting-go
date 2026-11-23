@@ -1037,7 +1037,7 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x05Added\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12_\n" +
 	"\bModified\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12^\n" +
 	"\aDeleted\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12n\n" +
-	"\x05Usage\x121.fits.api.accounting.mvm.v1.ManagedVMUsageRequest\x1a2.fits.api.accounting.mvm.v1.ManagedVMUsageResponseB\x11Z\x0fpkg/apis/mvm/v1b\x06proto3"
+	"\x05Usage\x121.fits.api.accounting.mvm.v1.ManagedVMUsageRequest\x1a2.fits.api.accounting.mvm.v1.ManagedVMUsageResponseB0Z.github.com/fi-ts/accounting-go/pkg/apis/mvm/v1b\x06proto3"
 
 var (
 	file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDescOnce sync.Once

@@ -557,7 +557,7 @@ const file_metalstack_io_accounting_api_v1_ip_proto_rawDesc = "" +
 	"\x05Added\x12).metalstack.io.accounting.api.v1.IPReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12]\n" +
 	"\bModified\x12).metalstack.io.accounting.api.v1.IPReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12\\\n" +
 	"\aDeleted\x12).metalstack.io.accounting.api.v1.IPReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12j\n" +
-	"\x05Usage\x12/.metalstack.io.accounting.api.v1.IPUsageRequest\x1a0.metalstack.io.accounting.api.v1.IPUsageResponseB\rZ\vpkg/apis/v1b\x06proto3"
+	"\x05Usage\x12/.metalstack.io.accounting.api.v1.IPUsageRequest\x1a0.metalstack.io.accounting.api.v1.IPUsageResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_ip_proto_rawDescOnce sync.Once
