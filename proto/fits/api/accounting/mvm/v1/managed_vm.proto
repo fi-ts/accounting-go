@@ -27,7 +27,6 @@ message ManagedVMReport {
   repeated string annotations = 8;
   bool billable = 9;
   optional google.protobuf.Timestamp billable_from = 10;
-  bool backup = 11;
 }
 
 message ManagedVM {
@@ -41,6 +40,7 @@ message ManagedVM {
   string availability = 8;
   repeated ManagedVMDisk disks = 9;
   bool encrypted = 10;
+  bool backup = 11;
 }
 
 message ManagedVMDisk {
