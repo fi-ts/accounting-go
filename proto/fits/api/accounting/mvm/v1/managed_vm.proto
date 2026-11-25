@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package fits.api.accounting.mvm.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg/apis/mvm/v1";
+
+service ManagedVMService {
+  rpc Added(ManagedVMReport) returns (google.protobuf.Empty);
+  rpc Modified(ManagedVMReport) returns (google.protobuf.Empty);
+  rpc Deleted(ManagedVMReport) returns (google.protobuf.Empty);
+
+  rpc Usage(ManagedVMUsageRequest) returns (ManagedVMUsageResponse);
+}
+
+message ManagedVMReport {
+  string tenant = 1;
+  string tenant_name = 2;
+  string projectid = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  ManagedVM vm = 5;
+  bool contract = 6;
+  string order_number = 7;
+  repeated string annotations = 8;
+  bool billable = 9;
+  optional google.protobuf.Timestamp billable_from = 10;
+}
+
+message ManagedVM {
+  string uuid = 1;
+  string hostname = 2;
+  string fqdn = 3;
+  uint64 cpus = 4;
+  uint64 memory = 5;
+  string image = 6;
+  string serviceclass = 7;
+  string availability = 8;
+  repeated ManagedVMDisk disks = 9;
+  bool encrypted = 10;
+  bool backup = 11;
+}
+
+message ManagedVMDisk {
+  string uuid = 1;
+  uint64 size = 2;
+}
+
+message ManagedVMUsageRequest {
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  optional string tenant = 3;
+  optional string projectid = 4;
+}
+
+message ManagedVMUsageResponse {
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+  repeated ManagedVMUsage usage = 3;
+  ManagedVMUsageAccumuluated accumulated_usage = 4;
+}
+
+message ManagedVMUsage {
+  string tenant = 1;
+  string tenant_name = 2;
+  string project_id = 3;
+  string vm_uuid = 4;
+  string hostname = 5;
+  string fqdn = 6;
+  google.protobuf.Duration lifetime = 7;
+  repeated ManagedVMCpuUsage cpu_usage = 8;
+  repeated ManagedVMMemoryUsage memory_usage = 9;
+  repeated ManagedVMImageUsage image_usage = 10;
+  repeated ManagedVMDiskUsage disk_usage = 11;
+  bool contract = 12;
+  string order_number = 13;
+  repeated string annotations = 14;
+  bool billable = 15;
+  google.protobuf.Timestamp billable_from = 16;
+  bool encrypted = 17;
+  bool backup = 18;
+}
+
+message ManagedVMCpuUsage {
+  uint64 cpus = 1;
+  bool high_availability = 2;
+  bool gen1 = 3;
+  google.protobuf.Duration lifetime = 4;
+}
+
+message ManagedVMMemoryUsage {
+  uint64 memory = 1;
+  bool high_availability = 2;
+  bool gen1 = 3;
+  google.protobuf.Duration lifetime = 4;
+}
+
+message ManagedVMImageUsage {
+  string image = 1;
+  string serviceclass = 2;
+  string availability = 3;
+  google.protobuf.Duration lifetime = 4;
+}
+
+message ManagedVMDiskUsage {
+  string uuid = 1;
+  uint64 size = 2;
+  google.protobuf.Duration lifetime = 3;
+}
+
+message ManagedVMUsageAccumuluated {
+  google.protobuf.Duration lifetime = 1;
+}

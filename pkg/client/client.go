@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	mvmv1 "github.com/fi-ts/accounting-go/pkg/apis/mvm/v1"
 	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -27,6 +28,7 @@ type AccountingClient interface {
 	Machine() v1.MachineServiceClient
 	MachineReservation() v1.MachineReservationServiceClient
 	ProductOption() v1.ProductOptionServiceClient
+	ManagedVM() mvmv1.ManagedVMServiceClient
 	Close() error
 }
 
@@ -141,4 +143,8 @@ func (c client) MachineReservation() v1.MachineReservationServiceClient {
 
 func (c client) ProductOption() v1.ProductOptionServiceClient {
 	return v1.NewProductOptionServiceClient(c.conn)
+}
+
+func (c client) ManagedVM() mvmv1.ManagedVMServiceClient {
+	return mvmv1.NewManagedVMServiceClient(c.conn)
 }

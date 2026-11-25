@@ -3,8 +3,10 @@ package client
 import (
 	"testing"
 
+	mvmv1 "github.com/fi-ts/accounting-go/pkg/apis/mvm/v1"
 	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
 	accountingclient "github.com/fi-ts/accounting-go/pkg/client"
+	accmvmmocks "github.com/fi-ts/accounting-go/test/mocks/mvm/v1"
 	accmocks "github.com/fi-ts/accounting-go/test/mocks/v1"
 	"github.com/stretchr/testify/mock"
 
@@ -23,6 +25,7 @@ type AccountingMockFns struct {
 	ProductOption      func(mock *mock.Mock)
 	Machine            func(mock *mock.Mock)
 	MachineReservation func(mock *mock.Mock)
+	ManagedVMService   func(mock *mock.Mock)
 }
 
 type AccountingMockClient struct {
@@ -37,6 +40,7 @@ type AccountingMockClient struct {
 	ProductOptionService      *accmocks.ProductOptionServiceClient
 	MachineService            *accmocks.MachineServiceClient
 	MachineReservationService *accmocks.MachineReservationServiceClient
+	ManagedVMService          *accmvmmocks.ManagedVMServiceClient
 }
 
 func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient, accountingclient.AccountingClient) {
@@ -52,6 +56,7 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		ProductOptionService:      &accmocks.ProductOptionServiceClient{},
 		MachineService:            &accmocks.MachineServiceClient{},
 		MachineReservationService: &accmocks.MachineReservationServiceClient{},
+		ManagedVMService:          &accmvmmocks.ManagedVMServiceClient{},
 	}
 
 	if mockFns != nil {
@@ -87,6 +92,9 @@ func NewAccountingMockClient(mockFns *AccountingMockFns) (*AccountingMockClient,
 		}
 		if mockFns.MachineReservation != nil {
 			mockFns.MachineReservation(&a.MachineReservationService.Mock)
+		}
+		if mockFns.ManagedVMService != nil {
+			mockFns.ManagedVMService(&a.ManagedVMService.Mock)
 		}
 	}
 
@@ -145,6 +153,10 @@ func (c *AccountingMockClient) MachineReservation() v1.MachineReservationService
 	return c.MachineReservationService
 }
 
+func (c *AccountingMockClient) ManagedVM() mvmv1.ManagedVMServiceClient {
+	return c.ManagedVMService
+}
+
 func (c *AccountingMockClient) AssertExpectations(t *testing.T) {
 	_ = c.ClusterService.AssertExpectations(t)
 	_ = c.PodService.AssertExpectations(t)
@@ -157,4 +169,5 @@ func (c *AccountingMockClient) AssertExpectations(t *testing.T) {
 	_ = c.ProductOptionService.AssertExpectations(t)
 	_ = c.MachineService.AssertExpectations(t)
 	_ = c.MachineReservationService.AssertExpectations(t)
+	_ = c.ManagedVMService.AssertExpectations(t)
 }
