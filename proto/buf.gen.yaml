@@ -1,32 +1,7 @@
 version: v2
-managed:
-  enabled: true
-  # Only manage go_package; leave all other file options untouched.
-  disable:
-    - file_option: java_multiple_files
-    - file_option: java_outer_classname
-    - file_option: java_package
-    - file_option: csharp_namespace
-    - file_option: objc_class_prefix
-    - file_option: php_namespace
-    - file_option: php_metadata_namespace
-    - file_option: ruby_package
-  override:
-    # Keep the existing go package layout (pkg/apis/...) without touching the proto files.
-    - file_option: go_package
-      path: metalstack
-      value: github.com/fi-ts/accounting-go/pkg/apis/v1
-    - file_option: go_package
-      path: fits/api/accounting/mvm
-      value: github.com/fi-ts/accounting-go/pkg/apis/mvm/v1
 plugins:
   - remote: buf.build/protocolbuffers/go:v1.36.12
     out: ../
-    opt:
-      # strips the module prefix so files land in pkg/apis/...
-      - module=github.com/fi-ts/accounting-go
   - remote: buf.build/grpc/go:v1.6.2
     out: ../
-    opt:
-      - require_unimplemented_servers=false
-      - module=github.com/fi-ts/accounting-go
+    opt: require_unimplemented_servers=false

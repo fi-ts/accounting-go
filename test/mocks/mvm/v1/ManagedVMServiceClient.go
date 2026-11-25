@@ -8,9 +8,9 @@ import (
 	"context"
 
 	"github.com/fi-ts/accounting-go/pkg/apis/mvm/v1"
-	v10 "github.com/fi-ts/accounting-go/pkg/apis/v1"
 	mock "github.com/stretchr/testify/mock"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 // NewManagedVMServiceClient creates a new instance of ManagedVMServiceClient. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
@@ -41,7 +41,7 @@ func (_m *ManagedVMServiceClient) EXPECT() *ManagedVMServiceClient_Expecter {
 }
 
 // Added provides a mock function for the type ManagedVMServiceClient
-func (_mock *ManagedVMServiceClient) Added(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*v10.Empty, error) {
+func (_mock *ManagedVMServiceClient) Added(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, in, opts)
@@ -54,16 +54,16 @@ func (_mock *ManagedVMServiceClient) Added(ctx context.Context, in *v1.ManagedVM
 		panic("no return value specified for Added")
 	}
 
-	var r0 *v10.Empty
+	var r0 *emptypb.Empty
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) (*v10.Empty, error)); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) (*emptypb.Empty, error)); ok {
 		return returnFunc(ctx, in, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) *v10.Empty); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) *emptypb.Empty); ok {
 		r0 = returnFunc(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*v10.Empty)
+			r0 = ret.Get(0).(*emptypb.Empty)
 		}
 	}
 	if returnFunc, ok := ret.Get(1).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) error); ok {
@@ -113,18 +113,18 @@ func (_c *ManagedVMServiceClient_Added_Call) Run(run func(ctx context.Context, i
 	return _c
 }
 
-func (_c *ManagedVMServiceClient_Added_Call) Return(empty *v10.Empty, err error) *ManagedVMServiceClient_Added_Call {
+func (_c *ManagedVMServiceClient_Added_Call) Return(empty *emptypb.Empty, err error) *ManagedVMServiceClient_Added_Call {
 	_c.Call.Return(empty, err)
 	return _c
 }
 
-func (_c *ManagedVMServiceClient_Added_Call) RunAndReturn(run func(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*v10.Empty, error)) *ManagedVMServiceClient_Added_Call {
+func (_c *ManagedVMServiceClient_Added_Call) RunAndReturn(run func(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error)) *ManagedVMServiceClient_Added_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // Deleted provides a mock function for the type ManagedVMServiceClient
-func (_mock *ManagedVMServiceClient) Deleted(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*v10.Empty, error) {
+func (_mock *ManagedVMServiceClient) Deleted(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, in, opts)
@@ -137,16 +137,16 @@ func (_mock *ManagedVMServiceClient) Deleted(ctx context.Context, in *v1.Managed
 		panic("no return value specified for Deleted")
 	}
 
-	var r0 *v10.Empty
+	var r0 *emptypb.Empty
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) (*v10.Empty, error)); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) (*emptypb.Empty, error)); ok {
 		return returnFunc(ctx, in, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) *v10.Empty); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) *emptypb.Empty); ok {
 		r0 = returnFunc(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*v10.Empty)
+			r0 = ret.Get(0).(*emptypb.Empty)
 		}
 	}
 	if returnFunc, ok := ret.Get(1).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) error); ok {
@@ -196,18 +196,18 @@ func (_c *ManagedVMServiceClient_Deleted_Call) Run(run func(ctx context.Context,
 	return _c
 }
 
-func (_c *ManagedVMServiceClient_Deleted_Call) Return(empty *v10.Empty, err error) *ManagedVMServiceClient_Deleted_Call {
+func (_c *ManagedVMServiceClient_Deleted_Call) Return(empty *emptypb.Empty, err error) *ManagedVMServiceClient_Deleted_Call {
 	_c.Call.Return(empty, err)
 	return _c
 }
 
-func (_c *ManagedVMServiceClient_Deleted_Call) RunAndReturn(run func(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*v10.Empty, error)) *ManagedVMServiceClient_Deleted_Call {
+func (_c *ManagedVMServiceClient_Deleted_Call) RunAndReturn(run func(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error)) *ManagedVMServiceClient_Deleted_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // Modified provides a mock function for the type ManagedVMServiceClient
-func (_mock *ManagedVMServiceClient) Modified(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*v10.Empty, error) {
+func (_mock *ManagedVMServiceClient) Modified(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, in, opts)
@@ -220,16 +220,16 @@ func (_mock *ManagedVMServiceClient) Modified(ctx context.Context, in *v1.Manage
 		panic("no return value specified for Modified")
 	}
 
-	var r0 *v10.Empty
+	var r0 *emptypb.Empty
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) (*v10.Empty, error)); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) (*emptypb.Empty, error)); ok {
 		return returnFunc(ctx, in, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) *v10.Empty); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) *emptypb.Empty); ok {
 		r0 = returnFunc(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*v10.Empty)
+			r0 = ret.Get(0).(*emptypb.Empty)
 		}
 	}
 	if returnFunc, ok := ret.Get(1).(func(context.Context, *v1.ManagedVMReport, ...grpc.CallOption) error); ok {
@@ -279,12 +279,12 @@ func (_c *ManagedVMServiceClient_Modified_Call) Run(run func(ctx context.Context
 	return _c
 }
 
-func (_c *ManagedVMServiceClient_Modified_Call) Return(empty *v10.Empty, err error) *ManagedVMServiceClient_Modified_Call {
+func (_c *ManagedVMServiceClient_Modified_Call) Return(empty *emptypb.Empty, err error) *ManagedVMServiceClient_Modified_Call {
 	_c.Call.Return(empty, err)
 	return _c
 }
 
-func (_c *ManagedVMServiceClient_Modified_Call) RunAndReturn(run func(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*v10.Empty, error)) *ManagedVMServiceClient_Modified_Call {
+func (_c *ManagedVMServiceClient_Modified_Call) RunAndReturn(run func(ctx context.Context, in *v1.ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error)) *ManagedVMServiceClient_Modified_Call {
 	_c.Call.Return(run)
 	return _c
 }

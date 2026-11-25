@@ -546,7 +546,7 @@ const file_metalstack_io_accounting_api_v1_cluster_proto_rawDesc = "" +
 	"\x05Added\x12..metalstack.io.accounting.api.v1.ClusterReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12b\n" +
 	"\bModified\x12..metalstack.io.accounting.api.v1.ClusterReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12a\n" +
 	"\aDeleted\x12..metalstack.io.accounting.api.v1.ClusterReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12t\n" +
-	"\x05Usage\x124.metalstack.io.accounting.api.v1.ClusterUsageRequest\x1a5.metalstack.io.accounting.api.v1.ClusterUsageResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
+	"\x05Usage\x124.metalstack.io.accounting.api.v1.ClusterUsageRequest\x1a5.metalstack.io.accounting.api.v1.ClusterUsageResponseB\rZ\vpkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_cluster_proto_rawDescOnce sync.Once

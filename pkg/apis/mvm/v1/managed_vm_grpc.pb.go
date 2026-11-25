@@ -8,10 +8,10 @@ package v1
 
 import (
 	context "context"
-	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -30,9 +30,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagedVMServiceClient interface {
-	Added(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*v1.Empty, error)
-	Modified(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*v1.Empty, error)
-	Deleted(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*v1.Empty, error)
+	Added(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Modified(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Deleted(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Usage(ctx context.Context, in *ManagedVMUsageRequest, opts ...grpc.CallOption) (*ManagedVMUsageResponse, error)
 }
 
@@ -44,9 +44,9 @@ func NewManagedVMServiceClient(cc grpc.ClientConnInterface) ManagedVMServiceClie
 	return &managedVMServiceClient{cc}
 }
 
-func (c *managedVMServiceClient) Added(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*v1.Empty, error) {
+func (c *managedVMServiceClient) Added(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(v1.Empty)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ManagedVMService_Added_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -54,9 +54,9 @@ func (c *managedVMServiceClient) Added(ctx context.Context, in *ManagedVMReport,
 	return out, nil
 }
 
-func (c *managedVMServiceClient) Modified(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*v1.Empty, error) {
+func (c *managedVMServiceClient) Modified(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(v1.Empty)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ManagedVMService_Modified_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -64,9 +64,9 @@ func (c *managedVMServiceClient) Modified(ctx context.Context, in *ManagedVMRepo
 	return out, nil
 }
 
-func (c *managedVMServiceClient) Deleted(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*v1.Empty, error) {
+func (c *managedVMServiceClient) Deleted(ctx context.Context, in *ManagedVMReport, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(v1.Empty)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, ManagedVMService_Deleted_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -88,9 +88,9 @@ func (c *managedVMServiceClient) Usage(ctx context.Context, in *ManagedVMUsageRe
 // All implementations should embed UnimplementedManagedVMServiceServer
 // for forward compatibility.
 type ManagedVMServiceServer interface {
-	Added(context.Context, *ManagedVMReport) (*v1.Empty, error)
-	Modified(context.Context, *ManagedVMReport) (*v1.Empty, error)
-	Deleted(context.Context, *ManagedVMReport) (*v1.Empty, error)
+	Added(context.Context, *ManagedVMReport) (*emptypb.Empty, error)
+	Modified(context.Context, *ManagedVMReport) (*emptypb.Empty, error)
+	Deleted(context.Context, *ManagedVMReport) (*emptypb.Empty, error)
 	Usage(context.Context, *ManagedVMUsageRequest) (*ManagedVMUsageResponse, error)
 }
 
@@ -101,13 +101,13 @@ type ManagedVMServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedManagedVMServiceServer struct{}
 
-func (UnimplementedManagedVMServiceServer) Added(context.Context, *ManagedVMReport) (*v1.Empty, error) {
+func (UnimplementedManagedVMServiceServer) Added(context.Context, *ManagedVMReport) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Added not implemented")
 }
-func (UnimplementedManagedVMServiceServer) Modified(context.Context, *ManagedVMReport) (*v1.Empty, error) {
+func (UnimplementedManagedVMServiceServer) Modified(context.Context, *ManagedVMReport) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Modified not implemented")
 }
-func (UnimplementedManagedVMServiceServer) Deleted(context.Context, *ManagedVMReport) (*v1.Empty, error) {
+func (UnimplementedManagedVMServiceServer) Deleted(context.Context, *ManagedVMReport) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Deleted not implemented")
 }
 func (UnimplementedManagedVMServiceServer) Usage(context.Context, *ManagedVMUsageRequest) (*ManagedVMUsageResponse, error) {

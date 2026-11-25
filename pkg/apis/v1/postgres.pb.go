@@ -687,7 +687,7 @@ const file_metalstack_io_accounting_api_v1_postgres_proto_rawDesc = "" +
 	"\x05Added\x12/.metalstack.io.accounting.api.v1.PostgresReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12c\n" +
 	"\bModified\x12/.metalstack.io.accounting.api.v1.PostgresReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12b\n" +
 	"\aDeleted\x12/.metalstack.io.accounting.api.v1.PostgresReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12v\n" +
-	"\x05Usage\x125.metalstack.io.accounting.api.v1.PostgresUsageRequest\x1a6.metalstack.io.accounting.api.v1.PostgresUsageResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
+	"\x05Usage\x125.metalstack.io.accounting.api.v1.PostgresUsageRequest\x1a6.metalstack.io.accounting.api.v1.PostgresUsageResponseB\rZ\vpkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_postgres_proto_rawDescOnce sync.Once

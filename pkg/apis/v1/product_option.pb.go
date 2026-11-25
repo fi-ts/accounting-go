@@ -482,7 +482,7 @@ const file_metalstack_io_accounting_api_v1_product_option_proto_rawDesc = "" +
 	" PRODUCT_OPTION_CLUSTER_ISOLATION\x10\x052\x83\x02\n" +
 	"\x14ProductOptionService\x12h\n" +
 	"\bModified\x124.metalstack.io.accounting.api.v1.ProductOptionReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12\x80\x01\n" +
-	"\x05Usage\x12:.metalstack.io.accounting.api.v1.ProductOptionUsageRequest\x1a;.metalstack.io.accounting.api.v1.ProductOptionUsageResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
+	"\x05Usage\x12:.metalstack.io.accounting.api.v1.ProductOptionUsageRequest\x1a;.metalstack.io.accounting.api.v1.ProductOptionUsageResponseB\rZ\vpkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_product_option_proto_rawDescOnce sync.Once

@@ -7,10 +7,10 @@
 package v1
 
 import (
-	v1 "github.com/fi-ts/accounting-go/pkg/apis/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -944,7 +944,7 @@ var File_fits_api_accounting_mvm_v1_managed_vm_proto protoreflect.FileDescriptor
 
 const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\n" +
-	"+fits/api/accounting/mvm/v1/managed_vm.proto\x12\x1afits.api.accounting.mvm.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a,metalstack/io/accounting/api/v1/common.proto\"\xae\x03\n" +
+	"+fits/api/accounting/mvm/v1/managed_vm.proto\x12\x1afits.api.accounting.mvm.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xae\x03\n" +
 	"\x0fManagedVMReport\x12\x16\n" +
 	"\x06tenant\x18\x01 \x01(\tR\x06tenant\x12\x1f\n" +
 	"\vtenant_name\x18\x02 \x01(\tR\n" +
@@ -1032,12 +1032,12 @@ const file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDesc = "" +
 	"\x04size\x18\x02 \x01(\x04R\x04size\x125\n" +
 	"\blifetime\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\blifetime\"S\n" +
 	"\x1aManagedVMUsageAccumuluated\x125\n" +
-	"\blifetime\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\blifetime2\xa1\x03\n" +
-	"\x10ManagedVMService\x12\\\n" +
-	"\x05Added\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12_\n" +
-	"\bModified\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12^\n" +
-	"\aDeleted\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12n\n" +
-	"\x05Usage\x121.fits.api.accounting.mvm.v1.ManagedVMUsageRequest\x1a2.fits.api.accounting.mvm.v1.ManagedVMUsageResponseB0Z.github.com/fi-ts/accounting-go/pkg/apis/mvm/v1b\x06proto3"
+	"\blifetime\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\blifetime2\xf1\x02\n" +
+	"\x10ManagedVMService\x12L\n" +
+	"\x05Added\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a\x16.google.protobuf.Empty\x12O\n" +
+	"\bModified\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a\x16.google.protobuf.Empty\x12N\n" +
+	"\aDeleted\x12+.fits.api.accounting.mvm.v1.ManagedVMReport\x1a\x16.google.protobuf.Empty\x12n\n" +
+	"\x05Usage\x121.fits.api.accounting.mvm.v1.ManagedVMUsageRequest\x1a2.fits.api.accounting.mvm.v1.ManagedVMUsageResponseB\x11Z\x0fpkg/apis/mvm/v1b\x06proto3"
 
 var (
 	file_fits_api_accounting_mvm_v1_managed_vm_proto_rawDescOnce sync.Once
@@ -1066,7 +1066,7 @@ var file_fits_api_accounting_mvm_v1_managed_vm_proto_goTypes = []any{
 	(*ManagedVMUsageAccumuluated)(nil), // 10: fits.api.accounting.mvm.v1.ManagedVMUsageAccumuluated
 	(*timestamppb.Timestamp)(nil),      // 11: google.protobuf.Timestamp
 	(*durationpb.Duration)(nil),        // 12: google.protobuf.Duration
-	(*v1.Empty)(nil),                   // 13: metalstack.io.accounting.api.v1.Empty
+	(*emptypb.Empty)(nil),              // 13: google.protobuf.Empty
 }
 var file_fits_api_accounting_mvm_v1_managed_vm_proto_depIdxs = []int32{
 	11, // 0: fits.api.accounting.mvm.v1.ManagedVMReport.timestamp:type_name -> google.protobuf.Timestamp
@@ -1094,9 +1094,9 @@ var file_fits_api_accounting_mvm_v1_managed_vm_proto_depIdxs = []int32{
 	0,  // 22: fits.api.accounting.mvm.v1.ManagedVMService.Modified:input_type -> fits.api.accounting.mvm.v1.ManagedVMReport
 	0,  // 23: fits.api.accounting.mvm.v1.ManagedVMService.Deleted:input_type -> fits.api.accounting.mvm.v1.ManagedVMReport
 	3,  // 24: fits.api.accounting.mvm.v1.ManagedVMService.Usage:input_type -> fits.api.accounting.mvm.v1.ManagedVMUsageRequest
-	13, // 25: fits.api.accounting.mvm.v1.ManagedVMService.Added:output_type -> metalstack.io.accounting.api.v1.Empty
-	13, // 26: fits.api.accounting.mvm.v1.ManagedVMService.Modified:output_type -> metalstack.io.accounting.api.v1.Empty
-	13, // 27: fits.api.accounting.mvm.v1.ManagedVMService.Deleted:output_type -> metalstack.io.accounting.api.v1.Empty
+	13, // 25: fits.api.accounting.mvm.v1.ManagedVMService.Added:output_type -> google.protobuf.Empty
+	13, // 26: fits.api.accounting.mvm.v1.ManagedVMService.Modified:output_type -> google.protobuf.Empty
+	13, // 27: fits.api.accounting.mvm.v1.ManagedVMService.Deleted:output_type -> google.protobuf.Empty
 	4,  // 28: fits.api.accounting.mvm.v1.ManagedVMService.Usage:output_type -> fits.api.accounting.mvm.v1.ManagedVMUsageResponse
 	25, // [25:29] is the sub-list for method output_type
 	21, // [21:25] is the sub-list for method input_type

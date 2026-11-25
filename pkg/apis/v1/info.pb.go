@@ -323,7 +323,7 @@ const file_metalstack_io_accounting_api_v1_info_proto_rawDesc = "" +
 	"\x03ids\x18\x01 \x03(\tR\x03ids2\xf8\x01\n" +
 	"\vInfoService\x12u\n" +
 	"\bProjects\x123.metalstack.io.accounting.api.v1.ProjectInfoRequest\x1a4.metalstack.io.accounting.api.v1.ProjectInfoResponse\x12r\n" +
-	"\aTenants\x122.metalstack.io.accounting.api.v1.TenantInfoRequest\x1a3.metalstack.io.accounting.api.v1.TenantInfoResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
+	"\aTenants\x122.metalstack.io.accounting.api.v1.TenantInfoRequest\x1a3.metalstack.io.accounting.api.v1.TenantInfoResponseB\rZ\vpkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_info_proto_rawDescOnce sync.Once

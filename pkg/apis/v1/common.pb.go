@@ -325,7 +325,7 @@ const file_metalstack_io_accounting_api_v1_common_proto_rawDesc = "" +
 	"\n" +
 	"_projectidB\f\n" +
 	"\n" +
-	"_clusteridB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
+	"_clusteridB\rZ\vpkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_common_proto_rawDescOnce sync.Once

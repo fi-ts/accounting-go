@@ -547,7 +547,7 @@ const file_metalstack_io_accounting_api_v1_network_traffic_proto_rawDesc = "" +
 	"totalBytes2\xf8\x01\n" +
 	"\x15NetworkTrafficService\x12i\n" +
 	"\bModified\x125.metalstack.io.accounting.api.v1.NetworkTrafficReport\x1a&.metalstack.io.accounting.api.v1.Empty\x12t\n" +
-	"\x05Usage\x124.metalstack.io.accounting.api.v1.NetworkUsageRequest\x1a5.metalstack.io.accounting.api.v1.NetworkUsageResponseB,Z*github.com/fi-ts/accounting-go/pkg/apis/v1b\x06proto3"
+	"\x05Usage\x124.metalstack.io.accounting.api.v1.NetworkUsageRequest\x1a5.metalstack.io.accounting.api.v1.NetworkUsageResponseB\rZ\vpkg/apis/v1b\x06proto3"
 
 var (
 	file_metalstack_io_accounting_api_v1_network_traffic_proto_rawDescOnce sync.Once
